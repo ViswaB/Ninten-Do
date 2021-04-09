@@ -1,1 +1,0 @@
-folder for stats scene

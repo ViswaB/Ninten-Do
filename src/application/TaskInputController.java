@@ -37,7 +37,7 @@ public class TaskInputController {
     @FXML private ProgressBar hpProgess;
     
     @FXML private void toHome(ActionEvent event) throws IOException{
-    	taskInputAnchor = FXMLLoader.load(getClass().getResource("Main.fxml"));
+    	taskInputAnchor = FXMLLoader.load(getClass().getResource("Stats.fxml"));
     	Scene scene = new Scene(taskInputAnchor);
     	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	stage.setScene(scene);

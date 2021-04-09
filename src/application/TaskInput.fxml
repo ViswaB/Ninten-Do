@@ -46,27 +46,27 @@
       </Button>
       <ImageView fitHeight="16.0" fitWidth="67.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../resources/images/bossHpLabel.png" />
+            <Image url="@../../resources/images/taskImages/bossHpLabel.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="34.0" fitWidth="90.0" layoutX="3.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../resources/images/taskNameLabel.png" />
+            <Image url="@../../resources/images/taskImages/taskNameLabel.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="54.0" fitWidth="90.0" layoutX="3.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../resources/images/taskDescLabel.png" />
+            <Image url="@../../resources/images/taskImages/taskDescLabel.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="25.0" fitWidth="100.0" layoutX="4.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../resources/images/taskDateLabel.png" />
+            <Image url="@../../resources/images/taskImages/taskDateLabel.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="16.0" fitWidth="67.0" layoutX="14.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../resources/images/expLabel.png" />
+            <Image url="@../../resources/images/taskImages/expLabel.png" />
          </image>
       </ImageView>
    </children>

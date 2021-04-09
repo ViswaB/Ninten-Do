@@ -1,10 +1,10 @@
 #taskInputAnchor{
-    -fx-background-image: url("../images/smashbros.jpg");
+    -fx-background-image: url("../images/taskImages/smashbros.jpg");
     -fx-background-size: 100% 100%;
 }
 
 #homeButton{
-    -fx-background-image: url("../images/wiiHomeButton.jpg");
+    -fx-background-image: url("../images/taskImages/wiiHomeButton.jpg");
     -fx-background-size: 100% 100%;
 }
 
