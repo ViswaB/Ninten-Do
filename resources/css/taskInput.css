@@ -6,8 +6,6 @@
 #homeButton{
     -fx-background-image: url("../images/wiiHomeButton.jpg");
     -fx-background-size: 100% 100%;
-    -fx-border-radius: 30px;
-    -fx-background-radius: 30px;
 }
 
 #hpProgess{
