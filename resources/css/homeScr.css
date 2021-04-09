@@ -1,21 +1,21 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 #homeScr {
-	-fx-background-image:url("../homeImages/home.jpg");
+	-fx-background-image:url("../images/homeImages/home.jpg");
 	-fx-background-size: 100% 100%;
 }
 
 #title {
-	-fx-background-image:url("../homeImages/logo.jpg");
+	-fx-background-image:url("../images/homeImages/logo.jpg");
 	-fx-background-size: 100% 100%;
 }
 
 #topScr {
-	-fx-background-image:url("../homeImages/topScr.png");
+	-fx-background-image:url("../images/homeImages/topScr.png");
 	-fx-background-size: 100% 100%;
 }
 
 #bottomScr {
-	-fx-background-image:url("../homeImages/bottomScr.jpg");
+	-fx-background-image:url("../images/homeImages/bottomScr.jpg");
 	-fx-background-size: 100% 100%;
 }
 
@@ -28,17 +28,17 @@
 }
 
 #stats {
-	-fx-background-image:url("../homeImages/stats.jpg");
+	-fx-background-image:url("../images/homeImages/stats.jpg");
 	-fx-background-size: 100% 100%;
 }
 
 #task {
-	-fx-background-image:url("../homeImages/tasks.jpg");
+	-fx-background-image:url("../images/homeImages/tasks.jpg");
 	-fx-background-size: 100% 100%;
 }
 
 #goals {
-	-fx-background-image:url("../homeImages/goals.jpg");
+	-fx-background-image:url("../images/homeImages/goals.jpg");
 	-fx-background-size: 100% 100%;
 }
 

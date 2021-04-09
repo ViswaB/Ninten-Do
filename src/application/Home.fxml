@@ -9,9 +9,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="homeScr" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.HomeController">
+<AnchorPane fx:id="homeScr" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" stylesheets="@../../resources/css/homeScr.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeController">
    <children>
-      <Label layoutX="141.0" layoutY="453.0" prefHeight="27.0" prefWidth="31.0" text="XP" fx:id="xp">
+      <Label layoutX="141.0" layoutY="453.0" prefHeight="27.0" prefWidth="31.0" stylesheets="@../../resources/css/homeScr.css" text="XP" fx:id="xp">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -23,7 +23,7 @@
                </stops>
             </LinearGradient>
          </textFill></Label>
-      <Label fx:id="bossHP" layoutX="99.0" layoutY="282.0" prefHeight="30.0" prefWidth="83.0" text="Boss HP">
+      <Label fx:id="bossHP" layoutX="99.0" layoutY="282.0" prefHeight="30.0" prefWidth="83.0" stylesheets="@../../resources/css/homeScr.css" text="Boss HP">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -35,7 +35,7 @@
                </stops>
             </LinearGradient>
          </textFill></Label>
-      <Button fx:id="task" layoutX="634.0" layoutY="487.0" mnemonicParsing="false" prefHeight="135.0" prefWidth="145.0" text="Manage Tasks">
+      <Button fx:id="task" layoutX="634.0" layoutY="487.0" mnemonicParsing="false" onAction="#toTaskInput" prefHeight="135.0" prefWidth="145.0" stylesheets="@../../resources/css/homeScr.css" text="Manage Tasks">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -47,20 +47,20 @@
                </stops>
             </LinearGradient>
          </textFill></Button>
-      <Button fx:id="stats" layoutX="27.0" layoutY="490.0" mnemonicParsing="false" prefHeight="135.0" prefWidth="145.0" text="Satistics" textFill="WHITE">
+      <Button fx:id="stats" layoutX="27.0" layoutY="490.0" mnemonicParsing="false" onAction="#toUserStats" prefHeight="135.0" prefWidth="145.0" stylesheets="@../../resources/css/homeScr.css" text="Satistics" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Button>
-      <Button fx:id="logout" layoutX="64.0" layoutY="684.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" stylesheets="@application.css" text="Logout">
+      <Button fx:id="logout" layoutX="64.0" layoutY="684.0" mnemonicParsing="false" onDragDetected="#logout" prefHeight="35.0" prefWidth="100.0" stylesheets="@../../resources/css/homeScr.css" text="Logout">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Button>
-      <Label fx:id="name" layoutX="63.0" layoutY="148.0">
+      <Label fx:id="name" layoutX="63.0" layoutY="148.0" stylesheets="@../../resources/css/homeScr.css">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="name" layoutX="109.0" layoutY="175.0" prefHeight="45.0" prefWidth="65.0" text="Name">
+      <Label fx:id="name" layoutX="109.0" layoutY="175.0" prefHeight="45.0" prefWidth="65.0" stylesheets="@../../resources/css/homeScr.css" text="Name">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -73,12 +73,12 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <Button fx:id="goals" layoutX="634.0" layoutY="651.0" mnemonicParsing="false" prefHeight="135.0" prefWidth="145.0" text="Goals" textFill="YELLOW">
+      <Button fx:id="goals" layoutX="634.0" layoutY="651.0" mnemonicParsing="false" prefHeight="135.0" prefWidth="145.0" stylesheets="@../../resources/css/homeScr.css" text="Goals" textFill="YELLOW">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Label layoutX="634.0" layoutY="453.0" text="100/500" fx:id="xpPoints">
+      <Label layoutX="634.0" layoutY="453.0" stylesheets="@../../resources/css/homeScr.css" text="100/500" fx:id="xpPoints">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -91,7 +91,7 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <Label fx:id="hpPoints" layoutX="634.0" layoutY="282.0" text="120/300">
+      <Label fx:id="hpPoints" layoutX="634.0" layoutY="282.0" stylesheets="@../../resources/css/homeScr.css" text="120/300">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -104,7 +104,7 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <Pane fx:id="topScr" layoutX="190.0" layoutY="24.0" prefHeight="320.0" prefWidth="420.0" stylesheets="@application.css">
+      <Pane fx:id="topScr" layoutX="190.0" layoutY="24.0" prefHeight="320.0" prefWidth="420.0" stylesheets="@../../resources/css/homeScr.css">
          <children>
             <TextField fx:id="user" editable="false" layoutX="14.0" layoutY="147.0" minWidth="10.0" prefHeight="25.0" prefWidth="250.0">
                <font>
@@ -128,7 +128,7 @@
             <Pane fx:id="title" layoutX="73.0" layoutY="14.0" prefHeight="70.0" prefWidth="275.0" />
          </children>
       </Pane>
-      <Pane fx:id="bottomScr" layoutX="190.0" layoutY="453.0" prefHeight="320.0" prefWidth="420.0" stylesheets="@application.css">
+      <Pane fx:id="bottomScr" layoutX="190.0" layoutY="453.0" prefHeight="320.0" prefWidth="420.0" stylesheets="@../../resources/css/homeScr.css">
          <children>
             <ProgressBar layoutX="14.0" layoutY="8.0" prefHeight="25.0" prefWidth="400.0" progress="0.2" stylesheets="@application.css" fx:id="xpBar" />
             <Label fx:id="totalT" layoutX="55.0" layoutY="280.0" text="Total Tasks">
@@ -161,7 +161,7 @@
             <TextField fx:id="numT" editable="false" layoutX="152.0" layoutY="278.0" prefHeight="31.0" prefWidth="240.0" />
          </children>
       </Pane>
-      <Button fx:id="quit" layoutX="64.0" layoutY="731.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" stylesheets="@application.css" text="Quit">
+      <Button fx:id="quit" layoutX="64.0" layoutY="731.0" mnemonicParsing="false" onAction="#logoutAndExit" onDragDetected="#logoutAndExit" prefHeight="35.0" prefWidth="100.0" stylesheets="@../../resources/css/homeScr.css" text="Quit">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
