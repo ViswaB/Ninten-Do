@@ -1,0 +1,71 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+#homeScr {
+	-fx-background-image:url("../homeImages/home.jpg");
+	-fx-background-size: 100% 100%;
+}
+
+#title {
+	-fx-background-image:url("../homeImages/logo.jpg");
+	-fx-background-size: 100% 100%;
+}
+
+#topScr {
+	-fx-background-image:url("../homeImages/topScr.png");
+	-fx-background-size: 100% 100%;
+}
+
+#bottomScr {
+	-fx-background-image:url("../homeImages/bottomScr.jpg");
+	-fx-background-size: 100% 100%;
+}
+
+#hpBar {
+	-fx-accent: red;
+}
+
+#xpBar {
+	-fx-accent: green;
+}
+
+#stats {
+	-fx-background-image:url("../homeImages/stats.jpg");
+	-fx-background-size: 100% 100%;
+}
+
+#task {
+	-fx-background-image:url("../homeImages/tasks.jpg");
+	-fx-background-size: 100% 100%;
+}
+
+#goals {
+	-fx-background-image:url("../homeImages/goals.jpg");
+	-fx-background-size: 100% 100%;
+}
+
+#logout {
+	-fx-background-color: black;
+	-fx-text-fill: white;
+}
+
+#quit {
+	-fx-background-color: black;
+	-fx-text-fill: red;
+}
+
+#hpPoints {
+	-fx-background-color: red;
+	-fx-text-fill: white;
+}
+
+#xpPoints {
+	-fx-background-color: lime;
+	-fx-text-fill: black;
+}
+
+#taskList {
+	-fx-background-color: red;
+}
+
+#totalT {
+	-fx-background-color: red;
+}
