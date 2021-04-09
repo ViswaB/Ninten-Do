@@ -7,7 +7,7 @@
  * HomeController class
  */
 
-package home;
+package application;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
