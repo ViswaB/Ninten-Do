@@ -1,4 +1,4 @@
-package application;
+package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +26,7 @@ public class StatsController {
     @FXML private AnchorPane mainAnchor;
     
     @FXML private void toHome(ActionEvent event) throws IOException {
-    	mainAnchor = FXMLLoader.load(getClass().getResource("Home.fxml"));
+    	mainAnchor = FXMLLoader.load(getClass().getResource("../scene/Home.fxml"));
     	Scene scene = new Scene(mainAnchor);
     	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	stage.setScene(scene);

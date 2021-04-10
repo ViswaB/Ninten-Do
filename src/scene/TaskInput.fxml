@@ -10,7 +10,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="taskInputAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="619.0" stylesheets="@../../resources/css/taskInput.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TaskInputController">
+<AnchorPane fx:id="taskInputAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="619.0" stylesheets="@../../resources/css/taskInput.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TaskInputController">
    <children>
       <ProgressBar fx:id="hpProgess" focusTraversable="false" layoutX="94.0" layoutY="14.0" prefHeight="20.0" prefWidth="400.0" progress="0.5" stylesheets="@../../resources/css/taskInput.css" />
       <ProgressBar focusTraversable="false" layoutX="94.0" layoutY="366.0" prefHeight="20.0" prefWidth="400.0" progress="0.5" stylesheets="@../../resources/css/taskInput.css" fx:id="xpProgress" />

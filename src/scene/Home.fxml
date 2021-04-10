@@ -9,7 +9,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="homeScr" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" stylesheets="@../../resources/css/homeScr.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeController">
+<AnchorPane fx:id="homeScr" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" stylesheets="@../../resources/css/homeScr.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
    <children>
       <Label layoutX="141.0" layoutY="453.0" prefHeight="27.0" prefWidth="31.0" stylesheets="@../../resources/css/homeScr.css" text="XP" fx:id="xp">
          <font>
@@ -130,7 +130,7 @@
       </Pane>
       <Pane fx:id="bottomScr" layoutX="190.0" layoutY="453.0" prefHeight="320.0" prefWidth="420.0" stylesheets="@../../resources/css/homeScr.css">
          <children>
-            <ProgressBar layoutX="14.0" layoutY="8.0" prefHeight="25.0" prefWidth="400.0" progress="0.2" stylesheets="@application.css" fx:id="xpBar" />
+            <ProgressBar layoutX="14.0" layoutY="8.0" prefHeight="25.0" prefWidth="400.0" progress="0.2" stylesheets="@../../resources/css/homeScr.css" fx:id="xpBar" />
             <Label fx:id="totalT" layoutX="55.0" layoutY="280.0" text="Total Tasks">
                <font>
                   <Font name="System Bold" size="18.0" />

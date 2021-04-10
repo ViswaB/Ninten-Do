@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="mainAnchor" prefHeight="395.0" prefWidth="478.0" stylesheets="@../../resources/css/statsScene.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.StatsController">
+<AnchorPane fx:id="mainAnchor" prefHeight="395.0" prefWidth="478.0" stylesheets="@../../resources/css/statsScene.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StatsController">
    <children>
       <AnchorPane layoutX="-152.0" layoutY="-134.0" prefHeight="395.0" prefWidth="478.0" stylesheets="@../../resources/css/statsScene.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
