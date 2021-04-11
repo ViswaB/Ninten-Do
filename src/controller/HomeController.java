@@ -11,8 +11,6 @@ package controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import model.TaskItem;
 import model.TaskData;
@@ -25,13 +23,16 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class HomeController {
 	@FXML private Button task, stats, goals, logout, quit;
@@ -46,8 +47,6 @@ public class HomeController {
 	@FXML private Button markCompleteButton;
 	@FXML private Button removeTaskButton;
 	@FXML private Button removeAllButton;
-	
-	private List<TaskItem> taskItems;
 	
 	@FXML private void toTaskInput(ActionEvent event) throws IOException{
 		loader = new FXMLLoader();
@@ -107,24 +106,51 @@ public class HomeController {
 		removeTaskButton.setDisable(false);
 	}
 	
+	@FXML private void clearTasks(ActionEvent event) {
+		TaskData.getInstance().clearTasks();
+	}
+	
+	@FXML private void removeTask(ActionEvent event) {
+		TaskData.getInstance().removeTask(taskListView.getSelectionModel().getSelectedItem());
+	}
+	
+	@FXML private void markComplete(ActionEvent event) {
+		TaskData.getInstance().markComplete(taskListView.getSelectionModel().getSelectedItem());
+	}
+	
 	public void initialize() {
-//		TaskItem item1 = new TaskItem("title", "long description of todo item", LocalDate.now());
-//		TaskItem item2 = new TaskItem("title1", "long description of todo item1", LocalDate.now());
-//		TaskItem item3 = new TaskItem("title2", "long description of todo item2", LocalDate.now());
-//		TaskItem item4 = new TaskItem("title3", "long description of todo item3", LocalDate.now());
-//		TaskItem item5 = new TaskItem("title4", "long description of todo item4", LocalDate.now());
-//		
-//		taskItems = new ArrayList<TaskItem>();
-//		taskItems.add(item5);
-//		taskItems.add(item4);
-//		taskItems.add(item3);
-//		taskItems.add(item2);
-//		taskItems.add(item1);
-//		
-//		TaskData.getInstance().setTasks(taskItems);
-		
-		taskListView.getItems().setAll(TaskData.getInstance().getTasks());
+		taskListView.setItems(TaskData.getInstance().getTasks());
 		taskListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		
+		taskListView.setCellFactory(new Callback<ListView<TaskItem>, ListCell<TaskItem>>(){
+			@Override
+			public ListCell<TaskItem> call(ListView<TaskItem> param){
+				ListCell<TaskItem> cell = new ListCell<TaskItem>() {
+					@Override
+					protected void updateItem(TaskItem item, boolean empty) {
+						super.updateItem(item, empty);
+						if(empty) {
+							setText(null);
+						}else {
+							setText(item.getShortDesc());
+							int itemRank = item.getRank();
+							if(itemRank == 500) {
+								setTextFill(Color.DARKRED);
+							}else if(itemRank >= 200 && itemRank <= 280) {
+								setTextFill(Color.DARKGREEN);
+							}else if(itemRank >= 300 && itemRank <= 380) {
+								setTextFill(Color.ORANGE);
+							}else if(itemRank >= 400 && itemRank <= 480) {
+								setTextFill(Color.ORANGERED);
+							}else {
+								setTextFill(Color.BLACK);
+							}
+						}
+					}
+				};
+				return cell;
+			}
+		});
 		
 		disableTaskButtons();
 	}

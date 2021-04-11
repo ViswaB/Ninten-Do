@@ -11,23 +11,19 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Iterator;
-import java.util.List;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class TaskData {
 	private static TaskData instance = new TaskData();
 	private static String filename = "resources/data/tasks/test.dat";
-	private List<TaskItem> tasks;
+	private ObservableList<TaskItem> tasks;
 	private Path tasksPath;
 	
 	private TaskData() {}
 	
-	public void setTasks(List<TaskItem> tasks) {
-		this.tasks = tasks;
-	}
-	
-	public List<TaskItem> getTasks(){
+	public ObservableList<TaskItem> getTasks(){
 		return tasks;
 	}
 	
@@ -41,6 +37,22 @@ public class TaskData {
 	
 	public void addTask(TaskItem task) {
 		tasks.add(task);
+	}
+	
+	public void removeTask(TaskItem task) {
+		tasks.remove(task);
+	}
+	
+	public void clearTasks() {
+		tasks.clear();
+	}
+	
+	public void markComplete(TaskItem task) {
+		for(TaskItem t : tasks) {
+			if(t == task) {
+				t.setCompleted(true);
+			}
+		}
 	}
 	
 	public void loadTasks() {

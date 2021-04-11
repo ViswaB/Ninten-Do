@@ -14,19 +14,10 @@
    <children>
       <ProgressBar fx:id="hpProgess" focusTraversable="false" layoutX="94.0" layoutY="14.0" prefHeight="20.0" prefWidth="400.0" progress="0.5" stylesheets="@../../resources/css/taskInput.css" />
       <ProgressBar focusTraversable="false" layoutX="94.0" layoutY="366.0" prefHeight="20.0" prefWidth="400.0" progress="0.5" stylesheets="@../../resources/css/taskInput.css" fx:id="xpProgress" />
-      <TextArea fx:id="taskDesc" layoutX="94.0" layoutY="126.0" prefHeight="139.0" prefWidth="400.0" />
+      <TextArea fx:id="taskDesc" layoutX="94.0" layoutY="126.0" prefHeight="139.0" prefWidth="400.0" wrapText="true" />
       <TextField fx:id="taskName" layoutX="94.0" layoutY="65.0" prefHeight="25.0" prefWidth="400.0" />
       <DatePicker fx:id="taskDate" layoutX="104.0" layoutY="303.0" prefHeight="25.0" prefWidth="161.0" />
-      <Button fx:id="addButton" layoutX="415.0" layoutY="305.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="ADD" />
-      
-      
-      <RadioButton fx:id="diamondRadio" layoutX="275.0" layoutY="276.0" mnemonicParsing="false" text="Diamond - 50pts" textFill="WHITE" underline="true">
-         <toggleGroup>
-            <ToggleGroup fx:id="difficultyPicker" />
-         </toggleGroup></RadioButton>
-      <RadioButton fx:id="goldRadio" layoutX="275.0" layoutY="299.0" mnemonicParsing="false" text="Gold - 25 pts" textFill="WHITE" toggleGroup="$difficultyPicker" underline="true" />
-      <RadioButton fx:id="silverRadio" layoutX="275.0" layoutY="319.0" mnemonicParsing="false" selected="true" text="Silver - 15pts" textFill="WHITE" toggleGroup="$difficultyPicker" underline="true" />
-      <RadioButton fx:id="bronzeRadio" layoutX="275.0" layoutY="342.0" mnemonicParsing="false" text="Bronze - 5pts" textFill="WHITE" toggleGroup="$difficultyPicker" underline="true" />
+      <Button fx:id="addButton" layoutX="348.0" layoutY="303.0" mnemonicParsing="false" onAction="#processItem" prefHeight="25.0" prefWidth="79.0" text="ADD" />
       
       
       <Label fx:id="hpLabel" layoutX="500.0" layoutY="11.0" text="150/300" textFill="RED">
@@ -34,7 +25,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="expLabel" layoutX="500.0" layoutY="364.0" text="250/500" textFill="BLUE">
+      <Label fx:id="expLabel" layoutX="500.0" layoutY="364.0" text="250/500" textFill="BLUE" wrapText="true">
          <font>
             <Font size="16.0" />
          </font>
