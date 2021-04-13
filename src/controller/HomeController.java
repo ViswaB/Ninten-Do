@@ -1,16 +1,13 @@
-/*
- * Name: Viswa Bhargavi
- * UTSA ID: vab753
- * Course: CS 3443.001 - Application Programming
- * Professor: Heena Rathore
- * Team Project: Ninten-Do
- * HomeController class
- */
-
 package controller;
 
+import java.io.BufferedInputStream;
+import java.io.EOFException;
 import java.io.IOException;
-import java.time.LocalDate;
+import java.io.ObjectInputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.HashMap;
 
 import model.TaskItem;
 import model.TaskData;
@@ -48,6 +45,19 @@ public class HomeController {
 	@FXML private Button removeTaskButton;
 	@FXML private Button removeAllButton;
 	
+	private String fileName;
+	private String uid;
+	private int userXp, userHp;	// stores points of user
+	// passed in from the login controller
+	public void getUid(String uid) {
+		this.uid = uid;
+	}
+	// not needed if file name is already known
+	// temporarily set to where info is passed in from login controller
+	public void getfileName(String fileName) {
+		this.fileName=fileName;
+	}
+	
 	@FXML private void toTaskInput(ActionEvent event) throws IOException{
 		loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("../scene/TaskInput.fxml"));
@@ -78,9 +88,15 @@ public class HomeController {
 	}
 	
 	@FXML private void logout(ActionEvent event) throws IOException {
-		/*TODO: implement logic in model class
-		 * 		link to go back to login page
-		 */
+		loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("../scene/Login.fxml"));
+		homeScr = loader.load();
+		
+		Scene scene = new Scene(homeScr);
+		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.show();
 	}
 	
 	@FXML private void toTaskDetails(ActionEvent event) throws IOException {
@@ -118,7 +134,54 @@ public class HomeController {
 		TaskData.getInstance().markComplete(taskListView.getSelectionModel().getSelectedItem());
 	}
 	
-	public void initialize() {
+	/*
+	// logic for setting hp points based on task completion
+	@FXML private void setHPprogress() {
+		userHp = ;	//user points from boss hp
+		hpBar.setProgress(userHp/300);
+		hpPoints.setText(Integer.toString(x) + "/300");
+	}
+	
+	// logic for setting xp points based on task completion
+	@FXML private void setXPprogress() {
+		userXp = ; // user points from completing tasks
+		xpBar.setProgress(userXp/500);
+		xpPoints.setText(Integer.toString(x) + "/500");
+	} 
+	*/
+	
+	/* to read json file and get the corresponding info of logged in user
+	 * called from the initialize function 
+	 */
+	@SuppressWarnings("unchecked")
+	public void readFile(String fileName, String uid) throws IOException, ClassNotFoundException {
+		Path filePath = FileSystems.getDefault().getPath(fileName);
+
+		//for reading objects from file
+		ObjectInputStream inputFile = new ObjectInputStream(new BufferedInputStream(Files.newInputStream(filePath)));
+
+		//you can iterate through the file by using a while loop surrounded with a try{}catch{}
+		//for the catch clause, catch EOFException and terminate the while loop
+		boolean eof = false;
+		while(!eof){
+		    try{
+		        Object obj = (Object) inputFile.readObject();
+		        //object processing or storing for future application use
+		        HashMap<String, String> info = (HashMap<String, String>) obj;
+		        if(info.get("userId").equals(uid)) {
+		        	String firstName = info.get("firstname");
+			        String lastName = info.get("lastName");
+			        user.setText(firstName + " " + lastName);
+		        }
+		        
+		        
+		    }catch (EOFException e){
+		        eof = true;
+		    }
+		}
+	}
+	public void initialize() throws ClassNotFoundException, IOException {
+		readFile(fileName, uid);
 		taskListView.setItems(TaskData.getInstance().getTasks());
 		taskListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		
@@ -154,6 +217,8 @@ public class HomeController {
 		
 		disableTaskButtons();
 	}
+	
+	
 	
 	private void disableTaskButtons() {
 		viewTaskButton.setDisable(true);
