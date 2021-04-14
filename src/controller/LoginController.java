@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 
@@ -7,6 +8,7 @@ import java.io.IOException;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -18,7 +20,9 @@ public class LoginController {
 	@FXML private Button Login;
 	@FXML private Button quitApp;
 	@FXML private Button createNew;
-    @FXML private TextField Password;
+	@FXML private PasswordField password;
+	@FXML private PasswordField username;
+    @FXML private TextField passWord;
     @FXML private TextField userName;
     @FXML private AnchorPane loginScr;
     @FXML private AnchorPane registerScr;
@@ -53,7 +57,10 @@ public class LoginController {
 		
 
 	}
-	
+	@FXML private void quitToDesktop(ActionEvent event) throws IOException {
+		//implement logout logic in Model class
+		System.exit(0);
+	}	
 	
 	@FXML private void toRegisterScr(ActionEvent event) throws IOException {
 		registerScr= FXMLLoader.load(getClass().getResource("../scene/RegisterScreen.fxml"));
