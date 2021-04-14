@@ -51,7 +51,7 @@
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Button>
-      <Button fx:id="logout" layoutX="64.0" layoutY="684.0" mnemonicParsing="false" onDragDetected="#logout" prefHeight="35.0" prefWidth="100.0" stylesheets="@../../resources/css/homeScr.css" text="Logout">
+      <Button fx:id="logout" layoutX="641.0" layoutY="731.0" mnemonicParsing="false" onDragDetected="#logout" prefHeight="35.0" prefWidth="100.0" stylesheets="@../../resources/css/homeScr.css" text="Logout">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Button>
@@ -73,11 +73,6 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <Button fx:id="goals" layoutX="634.0" layoutY="651.0" mnemonicParsing="false" prefHeight="135.0" prefWidth="145.0" stylesheets="@../../resources/css/homeScr.css" text="Goals" textFill="YELLOW">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
       <Label layoutX="634.0" layoutY="453.0" stylesheets="@../../resources/css/homeScr.css" text="100/500" fx:id="xpPoints">
          <font>
             <Font name="System Bold" size="20.0" />
@@ -159,16 +154,16 @@
             </Label>
             <ListView fx:id="taskListView" fixedCellSize="0.0" layoutX="153.0" layoutY="46.0" onMouseClicked="#enableTaskButtons" prefHeight="220.0" prefWidth="240.0" />
             <TextField fx:id="numT" editable="false" layoutX="152.0" layoutY="278.0" prefHeight="31.0" prefWidth="240.0" />
-            <Button fx:id="viewTaskButton" layoutX="49.0" layoutY="86.0" mnemonicParsing="false" onAction="#toTaskDetails" prefHeight="25.0" prefWidth="100.0" text="View Task" />
-            <Button fx:id="markCompleteButton" layoutX="49.0" layoutY="122.0" mnemonicParsing="false" onAction="#markComplete" prefHeight="25.0" prefWidth="100.0" text="Mark Complete" />
-            <Button fx:id="removeTaskButton" layoutX="49.0" layoutY="160.0" mnemonicParsing="false" onAction="#removeTask" prefHeight="25.0" prefWidth="100.0" text="Remove Task" />
-            <Button fx:id="removeAllButton" layoutX="49.0" layoutY="198.0" mnemonicParsing="false" onAction="#clearTasks" prefHeight="25.0" prefWidth="100.0" text="Remove All" />
+            <Button fx:id="viewTaskButton" layoutX="17.0" layoutY="89.0" mnemonicParsing="false" onAction="#toTaskDetails" prefHeight="30.0" prefWidth="130.0" text="View Task" />
+            <Button fx:id="markCompleteButton" layoutX="17.0" layoutY="141.0" mnemonicParsing="false" onAction="#markComplete" prefHeight="30.0" prefWidth="130.0" text="Mark Complete" />
+            <Button fx:id="removeTaskButton" layoutX="17.0" layoutY="189.0" mnemonicParsing="false" onAction="#removeTask" prefHeight="30.0" prefWidth="130.0" text="Remove Task" />
          </children>
       </Pane>
-      <Button fx:id="quit" layoutX="64.0" layoutY="731.0" mnemonicParsing="false" onAction="#logoutAndExit" onDragDetected="#logoutAndExit" prefHeight="35.0" prefWidth="100.0" stylesheets="@../../resources/css/homeScr.css" text="Quit">
+      <Button fx:id="quit" layoutX="59.0" layoutY="731.0" mnemonicParsing="false" onAction="#logoutAndExit" onDragDetected="#logoutAndExit" prefHeight="35.0" prefWidth="100.0" stylesheets="@../../resources/css/homeScr.css" text="Quit">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
+      <Button fx:id="removeAllButton" layoutX="641.0" layoutY="687.0" mnemonicParsing="false" onAction="#clearTasks" prefHeight="25.0" prefWidth="100.0" text="Remove All" />
    </children>
 </AnchorPane>
