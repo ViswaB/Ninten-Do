@@ -14,8 +14,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("../scene/Home.fxml"));
-			Scene scene = new Scene(root,800,800);
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("../scene/LoginScreen.fxml"));
+			Scene scene = new Scene(root,1000,600);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
@@ -32,15 +32,15 @@ public class Main extends Application {
 
 	
 	
-	@Override
-	public void init() throws IOException {
-		model.TaskData.getInstance().loadTasks();
-	}
-
-	@Override
-	public void stop() throws IOException{
-		model.TaskData.getInstance().saveTasks();
-	}
-	
+//	@Override
+//	public void init() throws IOException {
+//		model.TaskData.getInstance().loadTasks();
+//	}
+//
+//	@Override
+//	public void stop() throws IOException{
+//		model.TaskData.getInstance().saveTasks();
+//	}
+//	
 	
 }

@@ -182,7 +182,7 @@ public class HomeController {
 		}
 	}
 	public void initialize() throws ClassNotFoundException, IOException {
-		readFile(fileName, uid);
+		//readFile(fileName, uid);
 		taskListView.setItems(TaskData.getInstance().getTasks());
 		taskListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		

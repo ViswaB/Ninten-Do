@@ -23,7 +23,7 @@ public class LoginController {
     @FXML private AnchorPane loginScr;
     @FXML private AnchorPane registerScr;
    
-	private void handleLogin(ActionEvent event) throws IOException {
+	@FXML private void handleLogin(ActionEvent event) throws IOException {
 		//logic to check if input was made in text fields
 		/*
 		if(model.UserData.getUser(username, password)) {
@@ -44,19 +44,21 @@ public class LoginController {
 		
 		
 		*/
-		registerScr= FXMLLoader.load(getClass().getResource("../scene/homeScr.fxml"));
+		registerScr= FXMLLoader.load(getClass().getResource("../scene/Home.fxml"));
 		Scene scene = new Scene(registerScr);
-		scene.getStylesheets().add(getClass().getResource("../../resources/css/loginScr.css").toExternalForm());
+		//scene.getStylesheets().add(getClass().getResource("../../resources/css/loginScr.css").toExternalForm());
 		Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 		window.setScene(scene);
 		window.show();
 		
 
 	}
-	private void toRegisterScr(ActionEvent event) throws IOException {
-		registerScr= FXMLLoader.load(getClass().getResource("../scene/registerScr.fxml"));
+	
+	
+	@FXML private void toRegisterScr(ActionEvent event) throws IOException {
+		registerScr= FXMLLoader.load(getClass().getResource("../scene/RegisterScreen.fxml"));
 		Scene scene = new Scene(registerScr);
-		scene.getStylesheets().add(getClass().getResource("../../resources/css/loginScr.css").toExternalForm());
+		//scene.getStylesheets().add(getClass().getResource("../../resources/css/loginScr.css").toExternalForm());
 		Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 		window.setScene(scene);
 		window.show();

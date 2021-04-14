@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="RegisterScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../resources/css/loginScr.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RegisterController">
+<AnchorPane fx:id="RegisterScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../resources/css/loginScr.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterController">
    <children>
       <PasswordField layoutX="405.0" layoutY="375.0" prefHeight="65.0" prefWidth="191.0" />
       <PasswordField layoutX="405.0" layoutY="300.0" prefHeight="65.0" prefWidth="191.0" />
@@ -35,7 +35,7 @@
             <Font name="Book Antiqua Bold" size="18.0" />
          </font>
       </Text>
-      <Button layoutX="14.0" layoutY="539.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="227.0" text="Back to login" textFill="#059400">
+      <Button fx:id="Login" layoutX="14.0" layoutY="539.0" mnemonicParsing="false" onAction="#toLoginScr" prefHeight="47.0" prefWidth="227.0" text="Back to login" textFill="#059400">
          <font>
             <Font name="Book Antiqua Bold" size="24.0" />
          </font>

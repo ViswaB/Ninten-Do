@@ -25,10 +25,10 @@ public class RegisterController {
     @FXML private AnchorPane registerScr;
    
 	
-	private void toLoginScr(ActionEvent event) throws IOException {
-		loginScr = FXMLLoader.load(getClass().getResource("../model/registerScr.fxml"));// pane you are GOING TO
+	@FXML private void toLoginScr(ActionEvent event) throws IOException {
+		loginScr = FXMLLoader.load(getClass().getResource("../scene/LoginScreen.fxml"));// pane you are GOING TO
 		Scene scene = new Scene(loginScr);// pane you are GOING TO show
-		scene.getStylesheets().add(getClass().getResource("../../resources/css/loginScr.css").toExternalForm());
+		//scene.getStylesheets().add(getClass().getResource("../../resources/css/loginScr.css").toExternalForm());
 		Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();// pane you are ON
 		window.setScene(scene);
 		window.show();
