@@ -37,6 +37,7 @@ public class UserData {
 	}
 	
 	public void  addUser(User user) {
+		this.loggedInUser = user;
 		this.allUsers.add(user);
 	}
 	
