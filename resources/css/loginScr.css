@@ -1,1 +1,8 @@
-test
+#loginScr {
+	-fx-background-image:url("../images/loginImages/loginScr.png");
+	-fx-background-size: 100% 100%;
+}
+#registerScr {
+	-fx-background-image:url("../images/loginImages/registerScr.png");
+	-fx-background-size: 100% 100%;
+}

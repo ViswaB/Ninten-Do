@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="LoginScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@loginScr.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
+   <children>
+      <PasswordField layoutX="405.0" layoutY="342.0" prefHeight="65.0" prefWidth="191.0" />
+      <PasswordField layoutX="405.0" layoutY="246.0" prefHeight="65.0" prefWidth="191.0" />
+      <Button layoutX="405.0" layoutY="420.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="191.0" text="Create new account!" textFill="BLUE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Text fill="#2600ff" layoutX="456.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="CENTER" wrappingWidth="88.291015625">
+         <font>
+            <Font name="Book Antiqua Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#2600ff" layoutX="456.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" textAlignment="CENTER" wrappingWidth="88.291015625">
+         <font>
+            <Font name="Book Antiqua Bold" size="18.0" />
+         </font>
+      </Text>
+      <Button layoutX="775.0" layoutY="539.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="211.0" text="Quit to desktop" textFill="#f50000">
+         <font>
+            <Font name="Book Antiqua Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="607.0" layoutY="277.0" mnemonicParsing="false" prefHeight="107.0" prefWidth="88.0" text="Login" textFill="BLUE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
