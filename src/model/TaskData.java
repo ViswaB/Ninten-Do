@@ -17,7 +17,8 @@ import javafx.collections.ObservableList;
 
 public class TaskData {
 	private static TaskData instance = new TaskData();
-	private static String filename = "resources/data/tasks/test.dat";
+	private static String filenameBase = "resources/data/tasks/";
+	private static String filename;
 	private ObservableList<TaskItem> tasks;
 	private Path tasksPath;
 	
@@ -27,8 +28,13 @@ public class TaskData {
 		return tasks;
 	}
 	
-	public void setFilename(String file) {
-		filename = file;
+	public void setFilename(int uid) {
+		StringBuffer fullFile = new StringBuffer();
+		fullFile.append(filenameBase);
+		fullFile.append("user");
+		fullFile.append(uid);
+		fullFile.append("tasks.dat");
+		filename = fullFile.toString();
 	}
 	
 	public static TaskData getInstance() {
