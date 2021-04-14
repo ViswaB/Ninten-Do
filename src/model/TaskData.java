@@ -18,7 +18,7 @@ import javafx.collections.ObservableList;
 public class TaskData {
 	private static TaskData instance = new TaskData();
 	private static String filenameBase = "resources/data/tasks/";
-	private static String filename;
+	private static String filename = "resources/data/tasks/test.dat";
 	private ObservableList<TaskItem> tasks;
 	private Path tasksPath;
 	

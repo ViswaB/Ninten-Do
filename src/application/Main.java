@@ -32,15 +32,15 @@ public class Main extends Application {
 
 	
 	
-//	@Override
-//	public void init() throws IOException {
-//		model.TaskData.getInstance().loadTasks();
-//	}
-//
-//	@Override
-//	public void stop() throws IOException{
-//		model.TaskData.getInstance().saveTasks();
-//	}
-//	
+	@Override
+	public void init() throws IOException {
+		model.TaskData.getInstance().loadTasks();
+	}
+
+	@Override
+	public void stop() throws IOException{
+		model.TaskData.getInstance().saveTasks();
+	}
+	
 	
 }
