@@ -17,9 +17,14 @@ public class User implements Serializable{
 	private int userMaxBossHp; //get by adding all ranks of tasks
 	private int reducedBossHp; //get by adding all ranks of tasks in completedTasks
 	private int userLevel; //current user level
+	private int userID;
 	
-	public void setFirstName(String fname) {
-		this.firstName = fname;
+	
+	public User(String firstName, String lastName, String userName, String password) {
+		this.userName = userName;
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.password = password;
 	}
 	
 	public String getFirstName() {
@@ -90,6 +95,10 @@ public class User implements Serializable{
 	
 	public int getNextLvlXp() {
 		return this.xpToNextLvl;
+	}
+	
+	public int getUserID() {
+		return this.userID;
 	}
 
 }
