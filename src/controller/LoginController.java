@@ -30,13 +30,22 @@ public class LoginController {
 	@FXML private void handleLogin(ActionEvent event) throws IOException {
 		//logic to check if input was made in text fields
 		/*
-		if(model.UserData.getUser(username, password)) {
-			registerScr= FXMLLoader.load(getClass().getResource("../scene/homeScr.fxml"));
-			Scene scene = new Scene(registerScr);
-			scene.getStylesheets().add(getClass().getResource("../../resources/css/loginScr.css").toExternalForm());
-			Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-			window.setScene(scene);
-			window.show();
+		if(){
+			if(model.UserData.getUser(username, password)) {
+				registerScr= FXMLLoader.load(getClass().getResource("../scene/homeScr.fxml"));
+				Scene scene = new Scene(registerScr);
+				scene.getStylesheets().add(getClass().getResource("../../resources/css/loginScr.css").toExternalForm());
+				Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+				window.setScene(scene);
+				window.show();
+			}
+			else{
+				Alert a = new Alert(AlertType.ERROR);
+				a.setTitle("Login Error");
+				a.setHeaderText("User not found!");
+				a.setContentText("Please enter correct username and password credentials!");
+				a.showAndWait();
+			}
 		} 
 		else{
 			Alert a = new Alert(AlertType.ERROR);
