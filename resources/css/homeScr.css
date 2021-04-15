@@ -27,45 +27,40 @@
 	-fx-accent: green;
 }
 
-#stats {
+#statsBtn {
 	-fx-background-image:url("../images/homeImages/stats.jpg");
 	-fx-background-size: 100% 100%;
 }
 
-#task {
+#manageTasksBtn {
 	-fx-background-image:url("../images/homeImages/tasks.jpg");
 	-fx-background-size: 100% 100%;
 }
 
-#goals {
-	-fx-background-image:url("../images/homeImages/goals.jpg");
-	-fx-background-size: 100% 100%;
-}
-
-#logout {
+#logoutBtn {
 	-fx-background-color: black;
 	-fx-text-fill: white;
 }
 
-#quit {
+#quitBtn {
 	-fx-background-color: black;
 	-fx-text-fill: red;
 }
 
-#hpPoints {
+#hpPointsLbl {
 	-fx-background-color: red;
 	-fx-text-fill: white;
 }
 
-#xpPoints {
+#xpPointsLbl {
 	-fx-background-color: lime;
 	-fx-text-fill: black;
 }
 
-#taskList {
+#taskListLbl {
 	-fx-background-color: red;
 }
 
-#totalT {
+#totalTasksLbl {
 	-fx-background-color: red;
 }
