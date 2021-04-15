@@ -20,7 +20,7 @@ public class UserData {
 	private ArrayList<User> allUsers;
 	private Path filePath;
 
-	private UserData() {}
+	public UserData() {}
 	
 	public boolean getUser(String userName, String password) {
 		for(User user : allUsers) {
@@ -36,7 +36,7 @@ public class UserData {
 		return this.loggedInUser;
 	}
 	
-	public void  addUser(User user) {
+	public void addUser(User user) {
 		this.loggedInUser = user;
 		this.allUsers.add(user);
 	}

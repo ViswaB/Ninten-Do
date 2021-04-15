@@ -31,24 +31,14 @@ public class User implements Serializable{
 		return this.firstName;
 	}
 	
-	public void setLastName(String lname) {
-		this.lastName = lname;
-	}
 	
 	public String getLastName() {
 		return this.lastName;
 	}
 	
-	public void setUserName(String uname) {
-		this.userName = uname;
-	}
 	
 	public String getUserName() {
 		return this.userName;
-	}
-	
-	public void setPassword(String pass) {
-		this.password = pass;
 	}
 	
 	public String getPassword() {
