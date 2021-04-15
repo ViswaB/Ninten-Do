@@ -83,7 +83,7 @@ public class HomeController {
 	
 	@FXML private void logout(ActionEvent event) throws IOException {
 		loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("../scene/Login.fxml"));
+		loader.setLocation(getClass().getResource("../scene/LoginScreen.fxml"));
 		homeScr = loader.load();
 		
 		Scene scene = new Scene(homeScr);

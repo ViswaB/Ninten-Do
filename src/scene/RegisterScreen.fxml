@@ -14,12 +14,12 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Text fx:id="confirmPass" fill="#2600ff" layoutX="420.0" layoutY="467.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password" textAlignment="CENTER" wrappingWidth="160.291015625">
+      <Text fill="#2600ff" layoutX="420.0" layoutY="467.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password" textAlignment="CENTER" wrappingWidth="160.291015625">
          <font>
             <Font name="Book Antiqua Bold" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="newPass" fill="#2600ff" layoutX="456.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" textAlignment="CENTER" wrappingWidth="88.291015625">
+      <Text fill="#2600ff" layoutX="456.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" textAlignment="CENTER" wrappingWidth="88.291015625">
          <font>
             <Font name="Book Antiqua Bold" size="18.0" />
          </font>
@@ -30,7 +30,7 @@
          </font>
       </Button>
       <PasswordField fx:id="newUsername" layoutX="405.0" layoutY="259.0" prefHeight="65.0" prefWidth="191.0" />
-      <Text fx:id="newUser" fill="#2600ff" layoutX="456.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="CENTER" wrappingWidth="88.291015625">
+      <Text fill="#2600ff" layoutX="456.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="CENTER" wrappingWidth="88.291015625">
          <font>
             <Font name="Book Antiqua Bold" size="18.0" />
          </font>
@@ -42,12 +42,12 @@
       </Button>
       <PasswordField fx:id="firstName" layoutX="303.0" layoutY="185.0" prefHeight="65.0" prefWidth="191.0" />
       <PasswordField fx:id="lastName" layoutX="508.0" layoutY="185.0" prefHeight="65.0" prefWidth="191.0" />
-      <Text fx:id="firstN" fill="#2600ff" layoutX="361.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name" textAlignment="CENTER" wrappingWidth="88.291015625">
+      <Text fill="#2600ff" layoutX="361.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name" textAlignment="CENTER" wrappingWidth="88.291015625">
          <font>
             <Font name="Book Antiqua Bold" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="lastN" fill="#2600ff" layoutX="552.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name" textAlignment="CENTER" wrappingWidth="88.291015625">
+      <Text fill="#2600ff" layoutX="552.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name" textAlignment="CENTER" wrappingWidth="88.291015625">
          <font>
             <Font name="Book Antiqua Bold" size="18.0" />
          </font>

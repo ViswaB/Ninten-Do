@@ -5,6 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.*;
 
 import java.io.IOException;
+
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Text;
+
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,10 +23,10 @@ public class LoginController {
 	@FXML private Button Login;
 	@FXML private Button quitApp;
 	@FXML private Button createNew;
-	@FXML private PasswordField password;
-	@FXML private PasswordField username;
-    @FXML private TextField passWord;
-    @FXML private TextField userName;
+	@FXML private PasswordField passwordField;
+	@FXML private PasswordField usernameField;
+    @FXML private Text passWord;
+    @FXML private Text userName;
     @FXML private AnchorPane loginScr;
     @FXML private AnchorPane registerScr;
    

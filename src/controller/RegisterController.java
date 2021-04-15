@@ -5,6 +5,8 @@ import javafx.fxml.*;
 
 import java.io.IOException;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Text;
+
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,10 +22,10 @@ public class RegisterController {
 	@FXML private Button Login;
 	@FXML private Button quitApp2;
 	@FXML private Button createNewButton;
-    @FXML private TextField newPass;
-    @FXML private TextField newUser;
-    @FXML private TextField firstN;
-    @FXML private TextField lastN;    
+    @FXML private Text newPass;
+    @FXML private Text newUser;
+    @FXML private Text firstN;
+    @FXML private Text lastN;    
     @FXML private AnchorPane loginScr;
     @FXML private AnchorPane registerScr;
     @FXML private PasswordField firstName;
