@@ -3,6 +3,8 @@ package controller;
 import java.io.IOException;
 
 import model.TaskItem;
+import model.User;
+import model.UserData;
 import model.TaskData;
 
 import javafx.application.Platform;
@@ -22,35 +24,22 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
 public class HomeController {
-	@FXML private Button task, stats, goals, logout, quit;
-	@FXML private Label welcome, name, xp, xpPoints, bossHP, hpPoints, taskList, totalT;
-	@FXML private TextField user, numT;
+	@FXML private Button manageTasksBtn, statsBtn, logoutBtn, quitBtn;
+	@FXML private Button viewTaskButton, markCompleteButton, removeTaskButton, removeAllButton;
+	@FXML private Label welcomeLbl, nameLbl, xpLbl, xpPointsLbl, bossHpLbl, hpPointsLbl, taskListLbl, totalTasksLbl;
+	@FXML private TextField nameUser, numT;
 	@FXML private ProgressBar xpBar, hpBar;
 	@FXML private ListView<TaskItem> taskListView;
 	@FXML private Pane title, topScr, bottomScr;
 	@FXML private AnchorPane homeScr;
 	@FXML private FXMLLoader loader;
-	@FXML private Button viewTaskButton;
-	@FXML private Button markCompleteButton;
-	@FXML private Button removeTaskButton;
-	@FXML private Button removeAllButton;
 	
-	private String fileName;
-	private String uid;
-	private int userXp, userHp;	// stores points of user
-	// passed in from the login controller
-	public void getUid(String uid) {
-		this.uid = uid;
-	}
-	// not needed if file name is already known
-	// temporarily set to where info is passed in from login controller
-	public void getfileName(String fileName) {
-		this.fileName=fileName;
-	}
+	// instances to retrieve user data
+	private UserData user = new UserData();
+	private User currentUser;
 	
 	@FXML private void toTaskInput(ActionEvent event) throws IOException{
 		loader = new FXMLLoader();
@@ -128,23 +117,11 @@ public class HomeController {
 		TaskData.getInstance().markComplete(taskListView.getSelectionModel().getSelectedItem());
 	}
 	
-	/*
-	// logic for setting hp points based on task completion
-	@FXML private void setHPprogress() {
-		userHp = ;	//user points from boss hp
-		hpBar.setProgress(userHp/300);
-		hpPoints.setText(Integer.toString(x) + "/300");
-	}
-	
-	// logic for setting xp points based on task completion
-	@FXML private void setXPprogress() {
-		userXp = ; // user points from completing tasks
-		xpBar.setProgress(userXp/500);
-		xpPoints.setText(Integer.toString(x) + "/500");
-	} 
-	*/
-	
 	public void initialize() throws ClassNotFoundException, IOException {
+		/* comment off when user data available */
+		//currentUser = user.retrieveUser();
+		//nameUser.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
+		
 		taskListView.setItems(TaskData.getInstance().getTasks());
 		taskListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		
@@ -178,10 +155,34 @@ public class HomeController {
 			}
 		});
 		
+		/* comment off when users data are added */
+		//setXPprogress();
+		//setHPprogress();
+		
 		disableTaskButtons();
 	}
 	
+	/* Comment off two methods when users data available
+
+	// logic for setting hp points based on user data
+	private void setHPprogress() {
+		int currBossHp = currentUser.getMaxBossHp() - currentUser.getBossDmg();
+		int maxBossHp = currentUser.getMaxBossHp();
+		double hpProgress = (double) currBossHp/maxBossHp;
+		xpBar.setProgress(hpProgress);
+		xpPointsLbl.setText(Integer.toString(currBossHp) + "/" + Integer.toString(maxBossHp));
+	}
 	
+	
+	// logic for setting xp points based on user data
+	private void setXPprogress() {
+		int userXp = currentUser.getUserXp();
+		int maxXp = currentUser.getNextLvlXp();
+		double xpProgress = (double) userXp/maxXp;
+		xpBar.setProgress(xpProgress);
+		xpPointsLbl.setText(Integer.toString(userXp) + "/" + Integer.toString(maxXp));
+	} 
+	*/
 	
 	private void disableTaskButtons() {
 		viewTaskButton.setDisable(true);
