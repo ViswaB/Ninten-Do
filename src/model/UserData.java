@@ -20,7 +20,7 @@ public class UserData {
 	private ArrayList<User> allUsers;
 	private Path filePath;
 
-	public UserData() {}
+	private UserData() {}
 	
 	public boolean getUser(String userName, String password) {
 		for(User user : allUsers) {
@@ -78,7 +78,7 @@ public class UserData {
 		}
 	}
 	
-	public UserData getInstance() {
+	public static UserData getInstance() {
 		return instance;
 	}
 

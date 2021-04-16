@@ -38,7 +38,6 @@ public class HomeController {
 	@FXML private FXMLLoader loader;
 	
 	// instances to retrieve user data
-	private UserData user = new UserData();
 	private User currentUser;
 	
 	@FXML private void toTaskInput(ActionEvent event) throws IOException{
@@ -119,7 +118,7 @@ public class HomeController {
 	
 	public void initialize() throws ClassNotFoundException, IOException {
 		/* comment off when user data available */
-		//currentUser = user.retrieveUser();
+		//currentUser = UserData.getInstance().retrieveUser();
 		//nameUser.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
 		
 		taskListView.setItems(TaskData.getInstance().getTasks());
