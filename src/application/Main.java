@@ -35,6 +35,7 @@ public class Main extends Application {
 	@Override
 	public void init() throws IOException {
 		model.TaskData.getInstance().loadTasks();
+		model.LevelsData.getInstance().loadLevels();
 	}
 
 	@Override

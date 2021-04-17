@@ -78,6 +78,14 @@ public class UserData {
 		}
 	}
 	
+	public void updateUser() {
+		for(User user : allUsers) {
+			if(user == this.loggedInUser) {
+				user = this.loggedInUser;
+			}
+		}
+	}
+	
 	public static UserData getInstance() {
 		return instance;
 	}

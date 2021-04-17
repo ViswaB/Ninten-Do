@@ -15,16 +15,21 @@ public class User implements Serializable{
 	private int userXp; //calculated by dividing task rank by 10?
 	private int xpToNextLvl; //read from file containing lvl,xp
 	private int userMaxBossHp; //get by adding all ranks of tasks
-	private int reducedBossHp; //get by adding all ranks of tasks in completedTasks
+	private int bossDamage; //get by adding all ranks of tasks in completedTasks
 	private int userLevel; //current user level
 	private int userID;
 	
 	
-	public User(String firstName, String lastName, String userName, String password) {
+	public User(String firstName, String lastName, String userName, String password, int id) {
 		this.userName = userName;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.password = password;
+		this.userID = id;
+		this.userLevel = 0;
+		this.userXp = 0;
+		this.userMaxBossHp = 0;
+		this.bossDamage = 0;
 	}
 	
 	public String getFirstName() {
@@ -45,12 +50,10 @@ public class User implements Serializable{
 		return this.password;
 	}
 	
-	public void setCompletedTask(ObservableList<TaskItem> totalTasks) {
-		for(TaskItem task : totalTasks) {
-			if(task.getCompleted()) {
-				this.completedTasks.add(task);
-			}
-		}
+	public void setCompletedTask(TaskItem task) {
+		this.completedTasks.add(task);
+		hitBoss(task.getRank());
+		addXp(task.getRank()/10);
 	}
 	
 	public void setBossHpStats(ObservableList<TaskItem> totalTasks) {
@@ -64,7 +67,7 @@ public class User implements Serializable{
 		for(TaskItem task : completedTasks) {
 			remainingBossHp += task.getRank();
 		}
-		this.reducedBossHp = remainingBossHp;
+		this.bossDamage = remainingBossHp;
 	}
 	
 	public int getMaxBossHp() {
@@ -72,15 +75,49 @@ public class User implements Serializable{
 	}
 	
 	public int getBossDmg() {
-		return this.reducedBossHp;
+		return this.bossDamage;
+	}
+	
+	private void hitBoss(int amount) {
+		int newBossDmg = this.bossDamage + amount;
+		
+		if(newBossDmg > this.userMaxBossHp) {
+			this.userMaxBossHp = -1;
+		}else {
+			this.bossDamage = newBossDmg;
+		}
 	}
 	
 	public int getUserLvl() {
 		return this.userLevel;
 	}
 	
+	private void addXp(int xp) {
+		
+		if(this.userLevel != -1) {
+			int newXp = this.userXp + xp;
+			
+			if(newXp > this.xpToNextLvl) {
+				this.userLevel++;
+				int remainingXp = newXp - this.xpToNextLvl;
+				this.userXp = remainingXp;
+				if(this.userLevel >= model.LevelsData.getInstance().getMaxLevel()) {
+					this.userLevel = -1;
+				}else {
+					setNextLvlXp(model.LevelsData.getInstance().getLevelXp(this.userLevel+1));
+				}
+			}else {
+				this.userXp = newXp;
+			}
+		}
+	}
+	
 	public int getUserXp() {
 		return this.userXp;
+	}
+	
+	public void setNextLvlXp(int xp) {
+		this.xpToNextLvl = xp;
 	}
 	
 	public int getNextLvlXp() {

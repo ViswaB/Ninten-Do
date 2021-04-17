@@ -66,10 +66,12 @@ public class HomeController {
 	
 	@FXML private void logoutAndExit(ActionEvent event) throws IOException {
 		//implement logout logic in Model class
+		UserData.getInstance().updateUser();
 		Platform.exit();
 	}
 	
 	@FXML private void logout(ActionEvent event) throws IOException {
+		UserData.getInstance().updateUser();
 		loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("../scene/LoginScreen.fxml"));
 		homeScr = loader.load();
@@ -113,7 +115,9 @@ public class HomeController {
 	}
 	
 	@FXML private void markComplete(ActionEvent event) {
-		TaskData.getInstance().markComplete(taskListView.getSelectionModel().getSelectedItem());
+		TaskItem task = taskListView.getSelectionModel().getSelectedItem();
+		TaskData.getInstance().markComplete(task);
+		UserData.getInstance().retrieveUser().setCompletedTask(task);
 	}
 	
 	public void initialize() throws ClassNotFoundException, IOException {
