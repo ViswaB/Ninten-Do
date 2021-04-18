@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,23 +9,33 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.TaskData;
+import model.TaskItem;
+import model.User;
+import model.UserData;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StatsController {
 
     @FXML private Label CurrentTasks;
     @FXML private Label UserStats;
     @FXML private Label Points;
-    @FXML private ProgressBar p3;
     @FXML private Label WeeklyTasks;
     @FXML private Label Level;
     @FXML private Label MonthlyTasks;
     @FXML private Button Home;
     @FXML private AnchorPane mainAnchor;
-    
+    @FXML private ProgressBar weekTask = new ProgressBar();
+    @FXML private ProgressBar monthTask = new ProgressBar();
+   
     @FXML private void toHome(ActionEvent event) throws IOException {
     	mainAnchor = FXMLLoader.load(getClass().getResource("../scene/Home.fxml"));
     	Scene scene = new Scene(mainAnchor);
@@ -32,4 +43,45 @@ public class StatsController {
     	stage.setScene(scene);
     	stage.show();
     }
+    
+    public void initialize() throws ClassNotFoundException, IOException {
+    	
+    	ObservableList<TaskItem> list;
+    	
+    	list = TaskData.getInstance().getTasks();
+    	
+    	
+    	double totalWeekTasks = 0;
+    	double totalMonthTasks = 0;
+    	double completedWeekTasks = 0;
+    	double completedMonthTasks = 0;
+    	
+    	
+    	for(TaskItem t : list) {
+    		long daysLong = ChronoUnit.DAYS.between(LocalDate.now(), t.getDeadline());
+    		int days = (int)daysLong;
+    		
+    		if(days <= 7) {
+    			totalWeekTasks++;
+    			
+    			if(t.getCompleted() == true) {
+    				completedWeekTasks++;
+    			}
+    		}
+    		
+    		else if(days <= 30) {
+    			totalMonthTasks++;
+    			
+    			if(t.getCompleted() == true) {
+    				completedMonthTasks++;
+    			}
+    		}
+    	}
+    	
+    	weekTask.setProgress(completedWeekTasks / totalWeekTasks);
+		monthTask.setProgress(completedMonthTasks / totalMonthTasks);
+		
+    }
+    
+    
 }
