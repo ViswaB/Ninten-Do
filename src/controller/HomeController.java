@@ -66,7 +66,7 @@ public class HomeController {
 	
 	@FXML private void logoutAndExit(ActionEvent event) throws IOException {
 		//implement logout logic in Model class
-		UserData.getInstance().updateUser();
+		//UserData.getInstance().updateUser();
 		Platform.exit();
 	}
 	
@@ -117,7 +117,7 @@ public class HomeController {
 	@FXML private void markComplete(ActionEvent event) {
 		TaskItem task = taskListView.getSelectionModel().getSelectedItem();
 		TaskData.getInstance().markComplete(task);
-		UserData.getInstance().retrieveUser().setCompletedTask(task);
+		//UserData.getInstance().retrieveUser().setCompletedTask(task);
 	}
 	
 	public void initialize() throws ClassNotFoundException, IOException {

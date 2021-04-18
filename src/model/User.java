@@ -57,17 +57,19 @@ public class User implements Serializable{
 	}
 	
 	public void setBossHpStats(ObservableList<TaskItem> totalTasks) {
-		int bossHp = 0;
-		int remainingBossHp = 0;
-		for(TaskItem task : totalTasks) {
-			bossHp += task.getRank();
+		if(this.userMaxBossHp != -1) {
+			int bossHp = 0;
+			int remainingBossHp = 0;
+			for(TaskItem task : totalTasks) {
+				bossHp += task.getRank();
+			}
+			this.userMaxBossHp = bossHp;
+			
+			for(TaskItem task : completedTasks) {
+				remainingBossHp += task.getRank();
+			}
+			this.bossDamage = remainingBossHp;
 		}
-		this.userMaxBossHp = bossHp;
-		
-		for(TaskItem task : completedTasks) {
-			remainingBossHp += task.getRank();
-		}
-		this.bossDamage = remainingBossHp;
 	}
 	
 	public int getMaxBossHp() {
@@ -81,10 +83,12 @@ public class User implements Serializable{
 	private void hitBoss(int amount) {
 		int newBossDmg = this.bossDamage + amount;
 		
-		if(newBossDmg > this.userMaxBossHp) {
-			this.userMaxBossHp = -1;
-		}else {
-			this.bossDamage = newBossDmg;
+		if(this.userMaxBossHp != -1) {
+			if(newBossDmg > this.userMaxBossHp) {
+				this.userMaxBossHp = -1;
+			}else {
+				this.bossDamage = newBossDmg;
+			}
 		}
 	}
 	
