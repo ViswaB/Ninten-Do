@@ -38,7 +38,7 @@ public class HomeController {
 	@FXML private FXMLLoader loader;
 	
 	// instances to retrieve user data
-	private User currentUser;
+	User currentUser;
 	
 	@FXML private void toTaskInput(ActionEvent event) throws IOException{
 		loader = new FXMLLoader();
@@ -169,21 +169,25 @@ public class HomeController {
 
 	// logic for setting hp points based on user data
 	private void setHPprogress() {
-		int currBossHp = currentUser.getMaxBossHp() - currentUser.getBossDmg();
-		int maxBossHp = currentUser.getMaxBossHp();
-		double hpProgress = (double) currBossHp/maxBossHp;
-		xpBar.setProgress(hpProgress);
-		xpPointsLbl.setText(Integer.toString(currBossHp) + "/" + Integer.toString(maxBossHp));
+		if(currentUser.getMaxBossHp() != - 1) {
+			int currBossHp = currentUser.getMaxBossHp() - currentUser.getBossDmg();
+			int maxBossHp = currentUser.getMaxBossHp();
+			double hpProgress = (double) currBossHp/maxBossHp;
+			xpBar.setProgress(hpProgress);
+			xpPointsLbl.setText(Integer.toString(currBossHp) + "/" + Integer.toString(maxBossHp));
+		}
 	}
 	
 	
 	// logic for setting xp points based on user data
 	private void setXPprogress() {
-		int userXp = currentUser.getUserXp();
-		int maxXp = currentUser.getNextLvlXp();
-		double xpProgress = (double) userXp/maxXp;
-		xpBar.setProgress(xpProgress);
-		xpPointsLbl.setText(Integer.toString(userXp) + "/" + Integer.toString(maxXp));
+		if(currentUser.getUserLvl() != - 1) {
+			int userXp = currentUser.getUserXp();
+			int maxXp = currentUser.getNextLvlXp();
+			double xpProgress = (double) userXp/maxXp;
+			xpBar.setProgress(xpProgress);
+			xpPointsLbl.setText(Integer.toString(userXp) + "/" + Integer.toString(maxXp));
+		}
 	} 
 	*/
 	
