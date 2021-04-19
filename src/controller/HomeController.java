@@ -29,7 +29,8 @@ import javafx.util.Callback;
 public class HomeController {
 	@FXML private Button manageTasksBtn, statsBtn, logoutBtn, quitBtn;
 	@FXML private Button viewTaskButton, markCompleteButton, removeTaskButton, removeAllButton;
-	@FXML private Label welcomeLbl, nameLbl, xpLbl, xpPointsLbl, bossHpLbl, hpPointsLbl, taskListLbl, totalTasksLbl;
+	@FXML private Label welcomeLbl, levelLbl,xpLbl, bossHpLbl, taskListLbl, totalTasksLbl;
+	@FXML private Label userLevel, xpPointsLbl, hpPointsLbl;
 	@FXML private TextField nameUser, numT;
 	@FXML private ProgressBar xpBar, hpBar;
 	@FXML private ListView<TaskItem> taskListView;
@@ -173,11 +174,14 @@ public class HomeController {
 			int currBossHp = currentUser.getMaxBossHp() - currentUser.getBossDmg();
 			int maxBossHp = currentUser.getMaxBossHp();
 			double hpProgress = (double) currBossHp/maxBossHp;
-			xpBar.setProgress(hpProgress);
-			xpPointsLbl.setText(Integer.toString(currBossHp) + "/" + Integer.toString(maxBossHp));
+			hpBar.setProgress(hpProgress);
+			hpPointsLbl.setText(Integer.toString(currBossHp) + "/" + Integer.toString(maxBossHp));
+		}
+		else {
+			hpBar.setProgress(0);
+			hpPointsLbl.setText("Defeated!");
 		}
 	}
-	
 	
 	// logic for setting xp points based on user data
 	private void setXPprogress() {
@@ -187,6 +191,10 @@ public class HomeController {
 			double xpProgress = (double) userXp/maxXp;
 			xpBar.setProgress(xpProgress);
 			xpPointsLbl.setText(Integer.toString(userXp) + "/" + Integer.toString(maxXp));
+		}
+		else {
+			xpBar.setProgress(1);
+			userLevel.setText(currentUser.getUserLvl());
 		}
 	} 
 	*/
