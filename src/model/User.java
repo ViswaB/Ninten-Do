@@ -105,10 +105,10 @@ public class User implements Serializable{
 				this.userLevel++;
 				int remainingXp = newXp - this.xpToNextLvl;
 				this.userXp = remainingXp;
-				if(this.userLevel >= model.LevelsData.getInstance().getMaxLevel()) {
+				if(this.userLevel >= LevelsData.getInstance().getMaxLevel()) {
 					this.userLevel = -1;
 				}else {
-					setNextLvlXp(model.LevelsData.getInstance().getLevelXp(this.userLevel+1));
+					setNextLvlXp(LevelsData.getInstance().getLevelXp(this.userLevel+1));
 				}
 			}else {
 				this.userXp = newXp;

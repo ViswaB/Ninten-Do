@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.LevelsData;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
@@ -35,7 +36,7 @@ public class Main extends Application {
 	@Override
 	public void init() throws IOException {
 		model.TaskData.getInstance().loadTasks();
-		model.LevelsData.getInstance().loadLevels();
+		LevelsData.getInstance().loadLevels();
 	}
 
 	@Override

@@ -29,25 +29,25 @@
             <Font name="Book Antiqua Bold" size="24.0" />
          </font>
       </Button>
-      <PasswordField fx:id="newUsername" layoutX="405.0" layoutY="259.0" prefHeight="65.0" prefWidth="191.0" />
-      <Text fill="#2600ff" layoutX="456.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="CENTER" wrappingWidth="88.291015625">
-         <font>
-            <Font name="Book Antiqua Bold" size="18.0" />
-         </font>
-      </Text>
       <Button fx:id="Login" layoutX="14.0" layoutY="539.0" mnemonicParsing="false" onAction="#toLoginScr" prefHeight="47.0" prefWidth="227.0" text="Back to login" textFill="#059400">
          <font>
             <Font name="Book Antiqua Bold" size="24.0" />
          </font>
       </Button>
-      <PasswordField fx:id="firstName" layoutX="303.0" layoutY="185.0" prefHeight="65.0" prefWidth="191.0" />
-      <PasswordField fx:id="lastName" layoutX="508.0" layoutY="185.0" prefHeight="65.0" prefWidth="191.0" />
-      <Text fill="#2600ff" layoutX="361.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name" textAlignment="CENTER" wrappingWidth="88.291015625">
+      <TextField fx:id="newUsername" layoutX="405.0" layoutY="256.0" prefHeight="65.0" prefWidth="191.0" />
+      <TextField fx:id="firstName" layoutX="310.0" layoutY="185.0" prefHeight="65.0" prefWidth="191.0" />
+      <TextField fx:id="lastName" layoutX="517.0" layoutY="185.0" prefHeight="65.0" prefWidth="191.0" />
+      <Text fill="#2600ff" layoutX="568.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name" textAlignment="CENTER" wrappingWidth="88.291015625">
          <font>
             <Font name="Book Antiqua Bold" size="18.0" />
          </font>
       </Text>
-      <Text fill="#2600ff" layoutX="552.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name" textAlignment="CENTER" wrappingWidth="88.291015625">
+      <Text fill="#2600ff" layoutX="361.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First name" textAlignment="CENTER" wrappingWidth="88.291015625">
+         <font>
+            <Font name="Book Antiqua Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#2600ff" layoutX="457.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="CENTER" wrappingWidth="88.291015625">
          <font>
             <Font name="Book Antiqua Bold" size="18.0" />
          </font>

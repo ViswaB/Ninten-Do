@@ -36,9 +36,20 @@ public class UserData {
 		return this.loggedInUser;
 	}
 	
-	public void addUser(User user) {
-		this.loggedInUser = user;
-		this.allUsers.add(user);
+	public boolean addUser(User user) {
+		for(User u: allUsers) {
+			if(u.getUserName().equals(user.getUserName())){
+				return false;
+			}
+		}
+		try {
+			this.loggedInUser = user;
+			this.allUsers.add(user);
+		}
+		catch (Exception e) {
+			return false;
+		}
+		return true;
 	}
 	
 	public void loadUsers() {
