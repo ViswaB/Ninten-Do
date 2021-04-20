@@ -185,6 +185,7 @@ public class HomeController {
 	
 	// logic for setting xp points based on user data
 	private void setXPprogress() {
+	userLevel.setText(currentUser.getUserLvl());
 		if(currentUser.getUserLvl() != - 1) {
 			int userXp = currentUser.getUserXp();
 			int maxXp = currentUser.getNextLvlXp();
@@ -194,7 +195,7 @@ public class HomeController {
 		}
 		else {
 			xpBar.setProgress(1);
-			userLevel.setText(currentUser.getUserLvl());
+			userLevel.setText("MAX");
 		}
 	} 
 	*/
