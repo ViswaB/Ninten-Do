@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.EOFException;
+import java.io.File;
 import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -15,7 +16,7 @@ import java.util.Iterator;
 
 public class UserData {
 	private static UserData instance = new UserData();
-	private static String usersFile = "users.dat";
+	private static String usersFile = "resources/data/users/users.dat";
 	private User loggedInUser;
 	private ArrayList<User> allUsers;
 	private Path filePath;
@@ -53,6 +54,7 @@ public class UserData {
 	}
 	
 	public void loadUsers() {
+		createIfNotExist();
 		allUsers = new ArrayList<User>();
 		filePath = FileSystems.getDefault().getPath(usersFile);
 		
@@ -66,12 +68,10 @@ public class UserData {
 					eof = true;
 				}
 			}
+		}catch(EOFException e) {
 		}catch(InvalidClassException e) {
-			e.printStackTrace();
 		}catch(IOException e) {
-			e.printStackTrace();
 		}catch(ClassNotFoundException e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -99,6 +99,18 @@ public class UserData {
 	
 	public static UserData getInstance() {
 		return instance;
+	}
+	
+	private void createIfNotExist() {
+		File file = new File(usersFile);
+		
+		if(!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

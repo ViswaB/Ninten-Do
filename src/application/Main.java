@@ -35,13 +35,13 @@ public class Main extends Application {
 	
 	@Override
 	public void init() throws IOException {
-		model.TaskData.getInstance().loadTasks();
+		model.UserData.getInstance().loadUsers();
 		LevelsData.getInstance().loadLevels();
 	}
 
 	@Override
 	public void stop() throws IOException{
-		model.TaskData.getInstance().saveTasks();
+		model.UserData.getInstance().saveUsers();
 	}
 	
 	

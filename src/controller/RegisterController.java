@@ -82,6 +82,11 @@ public class RegisterController {
 					failedtoCreate.setHeaderText("Unable to create user!");
 					failedtoCreate.setContentText("User already exists, please use unique credentials!");
 					failedtoCreate.showAndWait();
+					firstName.clear();
+					lastName.clear();
+					newUsername.clear();
+					newPassword.clear();
+					confirmPassword.clear();
 				}
 			}
 			else {
@@ -91,6 +96,8 @@ public class RegisterController {
 				passwordMismatch.setHeaderText("Unable to create user!");
 				passwordMismatch.setContentText("Your passwords do not match, please check again!");
 				passwordMismatch.showAndWait();
+				newPassword.clear();
+				confirmPassword.clear();
 			}
 		}
 		else {

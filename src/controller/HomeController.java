@@ -24,132 +24,158 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
 public class HomeController {
-	@FXML private Button manageTasksBtn, statsBtn, logoutBtn, quitBtn;
-	@FXML private Button viewTaskButton, markCompleteButton, removeTaskButton, removeAllButton;
-	@FXML private Label welcomeLbl, levelLbl,xpLbl, bossHpLbl, taskListLbl, totalTasksLbl;
-	@FXML private Label userLevel, xpPointsLbl, hpPointsLbl;
-	@FXML private TextField nameUser, numT;
-	@FXML private ProgressBar xpBar, hpBar;
-	@FXML private ListView<TaskItem> taskListView;
-	@FXML private Pane title, topScr, bottomScr;
-	@FXML private AnchorPane homeScr;
-	@FXML private FXMLLoader loader;
-	
+	@FXML
+	private Button manageTasksBtn, statsBtn, logoutBtn, quitBtn;
+	@FXML
+	private Button viewTaskButton, markCompleteButton, removeTaskButton, removeAllButton;
+	@FXML
+	private Label welcomeLbl, levelLbl, xpLbl, bossHpLbl, taskListLbl, totalTasksLbl;
+	@FXML
+	private Label userLevel, xpPointsLbl, hpPointsLbl;
+	@FXML
+	private TextField nameUser, numT;
+	@FXML
+	private ProgressBar xpBar, hpBar;
+	@FXML
+	private ListView<TaskItem> taskListView;
+	@FXML
+	private Pane title, topScr, bottomScr;
+	@FXML
+	private AnchorPane homeScr;
+	@FXML
+	private FXMLLoader loader;
+
 	// instances to retrieve user data
-	User currentUser;
-	
-	@FXML private void toTaskInput(ActionEvent event) throws IOException{
+	private User currentUser;
+
+	@FXML
+	private void toTaskInput(ActionEvent event) throws IOException {
 		loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("../scene/TaskInput.fxml"));
 		homeScr = loader.load();
-		
+
 		Scene scene = new Scene(homeScr);
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setScene(scene);
 		stage.setResizable(false);
 		stage.show();
 	}
-	
-	@FXML private void toUserStats(ActionEvent event) throws IOException {
+
+	@FXML
+	private void toUserStats(ActionEvent event) throws IOException {
 		loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("../scene/Stats.fxml"));
 		homeScr = loader.load();
-		
+
 		Scene scene = new Scene(homeScr);
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.show();
 	}
-	
-	@FXML private void logoutAndExit(ActionEvent event) throws IOException {
-		//implement logout logic in Model class
-		//UserData.getInstance().updateUser();
+
+	@FXML
+	private void logoutAndExit(ActionEvent event) throws IOException {
+		// implement logout logic in Model class
+		UserData.getInstance().updateUser();
+		TaskData.getInstance().saveTasks();
 		Platform.exit();
 	}
-	
-	@FXML private void logout(ActionEvent event) throws IOException {
+
+	@FXML
+	private void logout(ActionEvent event) throws IOException {
+		TaskData.getInstance().saveTasks();
 		UserData.getInstance().updateUser();
 		loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("../scene/LoginScreen.fxml"));
 		homeScr = loader.load();
-		
+
 		Scene scene = new Scene(homeScr);
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setScene(scene);
 		stage.setResizable(false);
 		stage.show();
 	}
-	
-	@FXML private void toTaskDetails(ActionEvent event) throws IOException {
-//		FXMLLoader loader = new FXMLLoader(getClass().getResource("../scene/TaskDetails.fxml"));
-//		
-//		TaskDetailController controller = new TaskDetailController(taskListView.getSelectionModel().getSelectedItem());
-//		loader.setController(controller);
-//		
-//		Scene scene = new Scene(loader.load());
-//		Stage stage = new Stage();
-//		stage.setTitle("Task Details");
-//		stage.setScene(scene);
-//		stage.setResizable(false);
-//		stage.initStyle(StageStyle.UTILITY);
-//		homeScr.setDisable(true);
-//		stage.showAndWait();
-//		homeScr.setDisable(false);
+
+	@FXML
+	private void toTaskDetails(ActionEvent event) throws IOException {
+		TaskItem task = taskListView.getSelectionModel().getSelectedItem();
+		if (task != null) {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../scene/TaskDetails.fxml"));
+
+			TaskDetailController controller = new TaskDetailController(task);
+			loader.setController(controller);
+
+			Scene scene = new Scene(loader.load());
+			Stage stage = new Stage();
+			stage.setTitle("Task Details");
+			stage.setScene(scene);
+			stage.setResizable(false);
+			stage.initStyle(StageStyle.UTILITY);
+			homeScr.setDisable(true);
+			stage.showAndWait();
+			homeScr.setDisable(false);
+		}
 	}
-	
-	@FXML private void enableTaskButtons() {
+
+	@FXML
+	private void enableTaskButtons() {
 		viewTaskButton.setDisable(false);
 		markCompleteButton.setDisable(false);
 		removeTaskButton.setDisable(false);
 	}
-	
-	@FXML private void clearTasks(ActionEvent event) {
+
+	@FXML
+	private void clearTasks(ActionEvent event) {
 		TaskData.getInstance().clearTasks();
 	}
-	
-	@FXML private void removeTask(ActionEvent event) {
+
+	@FXML
+	private void removeTask(ActionEvent event) {
 		TaskData.getInstance().removeTask(taskListView.getSelectionModel().getSelectedItem());
 	}
-	
-	@FXML private void markComplete(ActionEvent event) {
+
+	@FXML
+	private void markComplete(ActionEvent event) {
 		TaskItem task = taskListView.getSelectionModel().getSelectedItem();
 		TaskData.getInstance().markComplete(task);
-		//UserData.getInstance().retrieveUser().setCompletedTask(task);
+		// UserData.getInstance().retrieveUser().setCompletedTask(task);
 	}
-	
+
 	public void initialize() throws ClassNotFoundException, IOException {
-		/* comment off when user data available */
-		//currentUser = UserData.getInstance().retrieveUser();
-		//nameUser.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
-		
+		currentUser = UserData.getInstance().retrieveUser();
+		nameUser.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
+		TaskData.getInstance().setFilename(currentUser.getUserID());
+		TaskData.getInstance().loadTasks();
+
 		taskListView.setItems(TaskData.getInstance().getTasks());
 		taskListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-		
-		taskListView.setCellFactory(new Callback<ListView<TaskItem>, ListCell<TaskItem>>(){
+
+		taskListView.setCellFactory(new Callback<ListView<TaskItem>, ListCell<TaskItem>>() {
 			@Override
-			public ListCell<TaskItem> call(ListView<TaskItem> param){
+			public ListCell<TaskItem> call(ListView<TaskItem> param) {
 				ListCell<TaskItem> cell = new ListCell<TaskItem>() {
 					@Override
 					protected void updateItem(TaskItem item, boolean empty) {
 						super.updateItem(item, empty);
-						if(empty) {
+						if (empty) {
 							setText(null);
-						}else {
+						} else {
 							setText(item.getShortDesc());
 							int itemRank = item.getRank();
-							if(itemRank == 500) {
+							if (itemRank == 500) {
 								setTextFill(Color.DARKRED);
-							}else if(itemRank >= 200 && itemRank <= 280) {
+							} else if (itemRank >= 200 && itemRank <= 280) {
 								setTextFill(Color.DARKGREEN);
-							}else if(itemRank >= 300 && itemRank <= 380) {
+							} else if (itemRank >= 300 && itemRank <= 380) {
 								setTextFill(Color.ORANGE);
-							}else if(itemRank >= 400 && itemRank <= 480) {
+							} else if (itemRank >= 400 && itemRank <= 480) {
 								setTextFill(Color.ORANGERED);
-							}else {
+							} else {
 								setTextFill(Color.BLACK);
 							}
 						}
@@ -158,52 +184,48 @@ public class HomeController {
 				return cell;
 			}
 		});
-		
+
 		/* comment off when users data are added */
-		//setXPprogress();
-		//setHPprogress();
-		
+		setXPprogress();
+		setHPprogress();
+
 		disableTaskButtons();
 	}
-	
-	/* Comment off two methods when users data available
 
 	// logic for setting hp points based on user data
 	private void setHPprogress() {
-		if(currentUser.getMaxBossHp() != - 1) {
+		if (currentUser.getMaxBossHp() != -1) {
 			int currBossHp = currentUser.getMaxBossHp() - currentUser.getBossDmg();
 			int maxBossHp = currentUser.getMaxBossHp();
-			double hpProgress = (double) currBossHp/maxBossHp;
+			double hpProgress = (double) currBossHp / maxBossHp;
 			hpBar.setProgress(hpProgress);
 			hpPointsLbl.setText(Integer.toString(currBossHp) + "/" + Integer.toString(maxBossHp));
-		}
-		else {
+		} else {
 			hpBar.setProgress(0);
 			hpPointsLbl.setText("Defeated!");
 		}
 	}
-	
+
 	// logic for setting xp points based on user data
 	private void setXPprogress() {
-	userLevel.setText(currentUser.getUserLvl());
-		if(currentUser.getUserLvl() != - 1) {
+		userLevel.setText(Integer.toString(currentUser.getUserLvl()));
+		if (currentUser.getUserLvl() != -1) {
 			int userXp = currentUser.getUserXp();
 			int maxXp = currentUser.getNextLvlXp();
-			double xpProgress = (double) userXp/maxXp;
+			double xpProgress = (double) userXp / maxXp;
 			xpBar.setProgress(xpProgress);
 			xpPointsLbl.setText(Integer.toString(userXp) + "/" + Integer.toString(maxXp));
-		}
-		else {
+		} else {
 			xpBar.setProgress(1);
 			userLevel.setText("MAX");
+
 		}
-	} 
-	*/
-	
+	}
+
 	private void disableTaskButtons() {
 		viewTaskButton.setDisable(true);
 		markCompleteButton.setDisable(true);
 		removeTaskButton.setDisable(true);
-		
+
 	}
 }

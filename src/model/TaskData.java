@@ -3,6 +3,7 @@ package model;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.EOFException;
+import java.io.File;
 import java.io.IOException;
 import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
@@ -18,7 +19,7 @@ import javafx.collections.ObservableList;
 public class TaskData {
 	private static TaskData instance = new TaskData();
 	private static String filenameBase = "resources/data/tasks/";
-	private static String filename = "resources/data/tasks/test.dat";
+	private static String filename;
 	private ObservableList<TaskItem> tasks;
 	private Path tasksPath;
 	
@@ -62,6 +63,7 @@ public class TaskData {
 	}
 	
 	public void loadTasks() {
+		createIfNotExist();
 		tasks = FXCollections.observableArrayList();
 		tasksPath = FileSystems.getDefault().getPath(filename);
 		
@@ -75,12 +77,10 @@ public class TaskData {
 					eof = true;
 				}
 			}
+		}catch(EOFException e) {
 		}catch (InvalidClassException e) {
-			e.printStackTrace();
 		}catch (IOException e) {
-			e.printStackTrace();
 		}catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -95,6 +95,17 @@ public class TaskData {
 			}
 		}catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	private void createIfNotExist() {
+		File file = new File(filename);
+		if(!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

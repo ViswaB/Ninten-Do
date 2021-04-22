@@ -3,6 +3,8 @@ package controller;
 import model.TaskItem;
 //import java.time.format.DateTimeFormatter;
 
+import java.time.format.DateTimeFormatter;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -32,21 +34,20 @@ public class TaskDetailController {
 	}
 	
 	public void initialize() {
-		System.out.println("setting fields from " + this.selectedItem);
-//		taskTitle.setText(this.selectedItem.getShortDesc());
-//		taskTitle.setEditable(false);
-//		
-//		taskDescription.setText(this.selectedItem.getlongDesc());
-//		taskDescription.setEditable(false);
-//		DateTimeFormatter df = DateTimeFormatter.ofPattern("MMMM d, yyyy");
-//		
-//		taskDate.setText(df.format(this.selectedItem.getDeadline()));
-//		taskDate.setEditable(false);
-//		
-//		if(this.selectedItem.getCompleted()) {
-//			completedCheckbox.setSelected(true);
-//		}
-//		completedCheckbox.setDisable(true);
+		taskTitle.setText(this.selectedItem.getShortDesc());
+		taskTitle.setEditable(false);
+		
+		taskDescription.setText(this.selectedItem.getlongDesc());
+		taskDescription.setEditable(false);
+		DateTimeFormatter df = DateTimeFormatter.ofPattern("MMMM d, yyyy");
+		
+		taskDate.setText(df.format(this.selectedItem.getDeadline()));
+		taskDate.setEditable(false);
+		
+		if(this.selectedItem.getCompleted()) {
+			completedCheckbox.setSelected(true);
+		}
+		completedCheckbox.setDisable(true);
 	}
 
 }

@@ -48,6 +48,8 @@ public class LoginController {
 				a.setHeaderText("User not found!");
 				a.setContentText("Please enter correct username and password credentials!");
 				a.showAndWait();
+				usernameField.clear();
+				passwordField.clear();
 			}
 		} 
 		else{
@@ -59,7 +61,6 @@ public class LoginController {
 		}
 	}
 	@FXML private void quitToDesktop(ActionEvent event) throws IOException {
-		//implement logout logic in Model class
 		System.exit(0);
 	}	
 	
