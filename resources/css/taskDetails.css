@@ -1,0 +1,9 @@
+#mainAnchor {
+	-fx-background-image: url("../images/taskImages/viewTask.jpg");
+    -fx-background-size: 100% 100%;
+}
+
+#homeButton{
+    -fx-background-image: url("../images/taskImages/wiiHomeButton.jpg");
+    -fx-background-size: 100% 100%;
+}
