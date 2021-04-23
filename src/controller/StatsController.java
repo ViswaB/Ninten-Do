@@ -31,6 +31,8 @@ public class StatsController {
     @FXML private Label WeeklyTasks;
     @FXML private Label Level;
     @FXML private Label MonthlyTasks;
+    @FXML private Label levelLabel;
+    @FXML private Label pointLabel;
     @FXML private Button Home;
     @FXML private AnchorPane mainAnchor;
     @FXML private ProgressBar weekTask = new ProgressBar();
@@ -46,6 +48,7 @@ public class StatsController {
     
     public void initialize() throws ClassNotFoundException, IOException {
     	
+    	//set progress bars
     	ObservableList<TaskItem> list;
     	
     	list = TaskData.getInstance().getTasks();
@@ -78,9 +81,17 @@ public class StatsController {
     		}
     	}
     	
-    	weekTask.setProgress(completedWeekTasks / totalWeekTasks);
-		monthTask.setProgress(completedMonthTasks / totalMonthTasks);
+    	weekTask.setProgress((completedWeekTasks / totalWeekTasks));
+		monthTask.setProgress((completedMonthTasks / totalMonthTasks));
 		
+		//set level label
+		User player = UserData.getInstance().retrieveUser();
+		int level = player.getUserLvl();
+		levelLabel.setText(Integer.toString(level));
+		
+		//set point label
+		int points = player.getUserXp();
+		pointLabel.setText(Integer.toString(points));
     }
     
     

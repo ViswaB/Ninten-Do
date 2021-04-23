@@ -19,6 +19,8 @@
             <Label layoutX="85.0" layoutY="14.0" stylesheets="@../../resources/css/statsScene.css" text="Home" textFill="WHITE" />
             <ProgressBar fx:id="weekTask" layoutX="247.0" layoutY="80.0" prefWidth="200.0" progress="0.0" />
             <ProgressBar fx:id="monthTask" layoutX="247.0" layoutY="112.0" prefWidth="200.0" progress="0.0" />
+            <Label fx:id="levelLabel" layoutX="347.0" layoutY="217.0" prefHeight="17.0" prefWidth="22.0" textFill="WHITE" />
+            <Label fx:id="pointLabel" layoutX="344.0" layoutY="182.0" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>
