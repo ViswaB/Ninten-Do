@@ -52,14 +52,14 @@ public class RegisterController {
 		confirmPassword1 = confirmPassword.getLength() != 0 ? confirmPassword.getText(): null;
 		if(firstName1 != null && lastName1 != null && userName1 != null && passWord1  != null && confirmPassword1  != null) {
 			
-			if(passWord1 == confirmPassword1) {	
-				Scanner scan = new Scanner(new File("../resources/data/uids.txt"));
+			if(passWord1.equals(confirmPassword1)) {	
+				Scanner scan = new Scanner(new File("resources/data/uids.txt"));
 				userID = scan.nextInt();
 				scan.close();
 				User user = new User(firstName1, lastName1, userName1, passWord1, userID);
 				userID++;
-				FileWriter fwrite = new FileWriter("../resources/data/uids.txt");
-				fwrite.write(userID);
+				FileWriter fwrite = new FileWriter("resources/data/uids.txt");
+				fwrite.write(Integer.toString(userID));
 				fwrite.close();
 				if(UserData.getInstance().addUser(user)) {
 					
@@ -69,6 +69,8 @@ public class RegisterController {
 					userCreated.setHeaderText("User has been created!");
 					userCreated.setContentText("Success! Your account has been created, sending you to the home screen!");
 					userCreated.showAndWait();
+					model.TaskData.getInstance().setFilename(model.UserData.getInstance().retrieveUser().getUserID());
+					model.TaskData.getInstance().loadTasks();
 					loginScr = FXMLLoader.load(getClass().getResource("../scene/Home.fxml"));
 					Scene scene = new Scene(loginScr);
 					Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();

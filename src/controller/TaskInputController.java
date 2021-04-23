@@ -5,7 +5,8 @@ import java.time.LocalDate;
 
 import model.TaskData;
 import model.TaskItem;
-
+import model.User;
+import model.UserData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +42,9 @@ public class TaskInputController {
     @FXML private RadioButton goldRadio;
     @FXML private RadioButton silverRadio;
     @FXML private ProgressBar hpProgess;
+    @FXML private Label userLevel;
+    
+    private User currentUser;
     
     @FXML private void toHome(ActionEvent event) throws IOException{
     	taskInputAnchor = FXMLLoader.load(getClass().getResource("../scene/Home.fxml"));
@@ -56,6 +60,7 @@ public class TaskInputController {
     		String taskDescription = taskDesc.getText();
     		LocalDate taskDeadline = taskDate.getValue() != null ? taskDate.getValue() : LocalDate.now();
     		TaskData.getInstance().addTask(new TaskItem(taskTitle, taskDescription, taskDeadline));
+    		UserData.getInstance().retrieveUser().setMaxBossHp(0);
     		if(!showDialog("Process Success", "Successfully added Task")) {
     			return;
     		}
@@ -91,4 +96,40 @@ public class TaskInputController {
 		dialog.showAndWait();
 		return true;
     }
+    
+    public void initialize() {
+    	currentUser = model.UserData.getInstance().retrieveUser();
+    	setHPprogress();
+    	setXPprogress();
+    }
+    
+	// logic for setting hp points based on user data
+	private void setHPprogress() {
+		if (currentUser.getMaxBossHp() != -1) {
+			int currBossHp = currentUser.getMaxBossHp() - currentUser.getBossDmg();
+			int maxBossHp = currentUser.getMaxBossHp();
+			double hpProgress = (double) currBossHp / maxBossHp;
+			hpProgess.setProgress(hpProgress);
+			hpLabel.setText(Integer.toString(currBossHp) + "/" + Integer.toString(maxBossHp));
+		} else {
+			hpProgess.setProgress(0);
+			hpLabel.setText("Defeated!");
+		}
+	}
+
+	// logic for setting xp points based on user data
+	private void setXPprogress() {
+		userLevel.setText(Integer.toString(currentUser.getUserLvl()));
+		if (currentUser.getUserLvl() != -1) {
+			int userXp = currentUser.getUserXp();
+			int maxXp = currentUser.getNextLvlXp();
+			double xpProgresss = (double) userXp / maxXp;
+			xpProgress.setProgress(xpProgresss);
+			expLabel.setText(Integer.toString(userXp) + "/" + Integer.toString(maxXp));
+		} else {
+			xpProgress.setProgress(1);
+			expLabel.setText("MAX");
+
+		}
+	}
 }

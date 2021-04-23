@@ -30,6 +30,7 @@ public class User implements Serializable{
 		this.userXp = 0;
 		this.userMaxBossHp = 0;
 		this.bossDamage = 0;
+		this.completedTasks = new ArrayList<TaskItem>();
 	}
 	
 	public String getFirstName() {
@@ -69,6 +70,13 @@ public class User implements Serializable{
 				remainingBossHp += task.getRank();
 			}
 			this.bossDamage = remainingBossHp;
+		}
+	}
+	
+	public void setMaxBossHp(int hp) {
+		if(this.userMaxBossHp == -1) {
+			this.userMaxBossHp = hp;
+			this.bossDamage = 0;
 		}
 	}
 	
@@ -130,6 +138,11 @@ public class User implements Serializable{
 	
 	public int getUserID() {
 		return this.userID;
+	}
+	
+	@Override
+	public String toString() {
+		return this.firstName + " " + this.lastName;
 	}
 
 }

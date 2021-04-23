@@ -35,9 +35,10 @@ public class LoginController {
 		String tempPassword = passwordField.getLength() != 0 ? passwordField.getText(): null;
 		if(tempUsername != null && tempPassword != null){
 			if(model.UserData.getInstance().getUser(tempUsername, tempPassword)) {
-				registerScr= FXMLLoader.load(getClass().getResource("../scene/homeScr.fxml"));
+				model.TaskData.getInstance().setFilename(model.UserData.getInstance().retrieveUser().getUserID());
+				model.TaskData.getInstance().loadTasks();
+				registerScr= FXMLLoader.load(getClass().getResource("../scene/Home.fxml"));
 				Scene scene = new Scene(registerScr);
-				scene.getStylesheets().add(getClass().getResource("../../resources/css/loginScr.css").toExternalForm());
 				Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 				window.setScene(scene);
 				window.show();

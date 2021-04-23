@@ -28,30 +28,20 @@ import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
 public class HomeController {
-	@FXML
-	private Button manageTasksBtn, statsBtn, logoutBtn, quitBtn;
-	@FXML
-	private Button viewTaskButton, markCompleteButton, removeTaskButton, removeAllButton;
-	@FXML
-	private Label welcomeLbl, levelLbl, xpLbl, bossHpLbl, taskListLbl, totalTasksLbl;
-	@FXML
-	private Label userLevel, xpPointsLbl, hpPointsLbl;
-	@FXML
-	private TextField nameUser, numT;
-	@FXML
-	private ProgressBar xpBar, hpBar;
-	@FXML
-	private ListView<TaskItem> taskListView;
-	@FXML
-	private Pane title, topScr, bottomScr;
-	@FXML
-	private AnchorPane homeScr;
-	@FXML
-	private FXMLLoader loader;
+	@FXML private Button manageTasksBtn, statsBtn, logoutBtn, quitBtn;
+	@FXML private Button viewTaskButton, markCompleteButton, removeTaskButton, removeAllButton;
+	@FXML private Label welcomeLbl, levelLbl, xpLbl, bossHpLbl, taskListLbl, totalTasksLbl;
+	@FXML private Label userLevel, xpPointsLbl, hpPointsLbl;
+	@FXML private TextField nameUser, numT;
+	@FXML private ProgressBar xpBar, hpBar;
+	@FXML private ListView<TaskItem> taskListView;
+	@FXML private Pane title, topScr, bottomScr;
+	@FXML private AnchorPane homeScr;
+	@FXML private FXMLLoader loader;
 
 	// instances to retrieve user data
 	private User currentUser;
-
+	
 	@FXML
 	private void toTaskInput(ActionEvent event) throws IOException {
 		loader = new FXMLLoader();
@@ -136,21 +126,26 @@ public class HomeController {
 
 	@FXML
 	private void removeTask(ActionEvent event) {
-		TaskData.getInstance().removeTask(taskListView.getSelectionModel().getSelectedItem());
+		TaskItem task = taskListView.getSelectionModel().getSelectedItem();
+		if(task != null) {
+			TaskData.getInstance().removeTask(task);
+		}
 	}
 
 	@FXML
 	private void markComplete(ActionEvent event) {
 		TaskItem task = taskListView.getSelectionModel().getSelectedItem();
-		TaskData.getInstance().markComplete(task);
-		// UserData.getInstance().retrieveUser().setCompletedTask(task);
+		if(task != null) {
+			TaskData.getInstance().markComplete(task);
+			UserData.getInstance().retrieveUser().setCompletedTask(task);
+			setXPprogress();
+			setHPprogress();
+		}
 	}
 
 	public void initialize() throws ClassNotFoundException, IOException {
 		currentUser = UserData.getInstance().retrieveUser();
 		nameUser.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
-		TaskData.getInstance().setFilename(currentUser.getUserID());
-		TaskData.getInstance().loadTasks();
 
 		taskListView.setItems(TaskData.getInstance().getTasks());
 		taskListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -166,6 +161,9 @@ public class HomeController {
 							setText(null);
 						} else {
 							setText(item.getShortDesc());
+							if(item.getCompleted()) {
+								setDisable(true);
+							}
 							int itemRank = item.getRank();
 							if (itemRank == 500) {
 								setTextFill(Color.DARKRED);
@@ -186,6 +184,7 @@ public class HomeController {
 		});
 
 		/* comment off when users data are added */
+		model.UserData.getInstance().retrieveUser().setBossHpStats(TaskData.getInstance().getTasks());
 		setXPprogress();
 		setHPprogress();
 

@@ -94,7 +94,6 @@ public class TaskData {
 				taskFile.writeObject(task);
 			}
 		}catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -104,8 +103,11 @@ public class TaskData {
 			try {
 				file.createNewFile();
 			} catch (IOException e) {
-				e.printStackTrace();
 			}
 		}
+	}
+	
+	public String getFileName() {
+		return filename;
 	}
 }

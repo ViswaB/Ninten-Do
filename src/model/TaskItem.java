@@ -150,7 +150,6 @@ public class TaskItem implements Serializable{
 		}else {
 			this.rank = 180;
 		}
-		System.out.println(this.rank);
 	}
 	
 //	@Override
