@@ -14,6 +14,7 @@
 
 <hr>
 
+<h4>Description:</h4>
 <p>ToDo application that allows user to input tasks they must complete in a gamified manner to make it more fun and engaging</p>
 
 <h4>Known Bugs:</h4>
