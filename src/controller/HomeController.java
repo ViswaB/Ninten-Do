@@ -135,7 +135,7 @@ public class HomeController {
 	@FXML
 	private void markComplete(ActionEvent event) {
 		TaskItem task = taskListView.getSelectionModel().getSelectedItem();
-		if(task != null) {
+		if(task != null && !task.getCompleted()) {
 			TaskData.getInstance().markComplete(task);
 			UserData.getInstance().retrieveUser().setCompletedTask(task);
 			setXPprogress();
