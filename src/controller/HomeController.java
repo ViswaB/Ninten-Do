@@ -161,9 +161,6 @@ public class HomeController {
 							setText(null);
 						} else {
 							setText(item.getShortDesc());
-							if(item.getCompleted()) {
-								setDisable(true);
-							}
 							int itemRank = item.getRank();
 							if (itemRank == 500) {
 								setTextFill(Color.DARKRED);
