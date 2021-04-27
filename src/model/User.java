@@ -4,7 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
-
+/**
+ * The following project Ninten-Do is an application that allows users to input tasks they must complete in a game like manner.
+ * The goal of the application is to make daily chores fun and engaging for the user. The java Model application User.java
+ * is created in order to set the logic, functions and calls needed to allow users to view and update
+ * the data entered for the tasks necessary for the Ninten-Do application.
+ * 
+ *
+ */
 public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String firstName;
@@ -36,28 +43,32 @@ public class User implements Serializable{
 	public String getFirstName() {
 		return this.firstName;
 	}
-	
+	//returns the first name
 	
 	public String getLastName() {
 		return this.lastName;
 	}
-	
+	//returns the lastname
 	
 	public String getUserName() {
 		return this.userName;
 	}
+	//returns the string for get username
 	
 	public String getPassword() {
 		return this.password;
 	}
+	//returns the string for get password
 	
 	public void setCompletedTask(TaskItem task) {
+		//sets the task items
 		this.completedTasks.add(task);
 		hitBoss(task.getRank());
 		addXp(task.getRank()/10);
 	}
 	
 	public void setBossHpStats(ObservableList<TaskItem> totalTasks) {
+		//hashmap to store items in identifiers to calculate the total tasks and ranks
 		if(this.userMaxBossHp != -1) {
 			int bossHp = 0;
 			int remainingBossHp = 0;
@@ -78,17 +89,21 @@ public class User implements Serializable{
 			this.userMaxBossHp = hp;
 			this.bossDamage = 0;
 		}
+		//sets the max boss hp
 	}
 	
 	public int getMaxBossHp() {
 		return this.userMaxBossHp;
 	}
 	
+	//returns the usermax boss hp
 	public int getBossDmg() {
 		return this.bossDamage;
 	}
+	//returns the loss
 	
 	private void hitBoss(int amount) {
+		//logic for the amount calculations
 		int newBossDmg = this.bossDamage + amount;
 		
 		if(this.userMaxBossHp != -1) {
@@ -103,12 +118,14 @@ public class User implements Serializable{
 	public int getUserLvl() {
 		return this.userLevel;
 	}
+	//returns the user level
 	
 	private void addXp(int xp) {
+		//logic to add the xp 
 		
 		if(this.userLevel != -1) {
 			int newXp = this.userXp + xp;
-			
+			//logic to add xp and store
 			if(newXp > this.xpToNextLvl) {
 				this.userLevel++;
 				int remainingXp = newXp - this.xpToNextLvl;
@@ -127,22 +144,26 @@ public class User implements Serializable{
 	public int getUserXp() {
 		return this.userXp;
 	}
+	//returns userxp
 	
 	public void setNextLvlXp(int xp) {
 		this.xpToNextLvl = xp;
 	}
-	
+	//sets next xp
 	public int getNextLvlXp() {
 		return this.xpToNextLvl;
 	}
+	//returns get new xp
 	
 	public int getUserID() {
 		return this.userID;
 	}
+	//returns userID
 	
 	@Override
 	public String toString() {
 		return this.firstName + " " + this.lastName;
 	}
+	//returns first name and last name called via String toString
 
 }

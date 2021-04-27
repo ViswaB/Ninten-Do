@@ -15,8 +15,16 @@ import java.util.Iterator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
+/**
+ * The following project Ninten-Do is an application that allows users to input tasks they must complete in a game like manner.
+ * The goal of the application is to make daily chores fun and engaging for the user. The java model application TaskData.java
+ * is created in order to set the logic, functions and calls needed to allow users to update
+ * the data entered for the tasks necessary for the Ninten-Do application.
+ * 
+ *
+ */
 public class TaskData {
+	
 	private static TaskData instance = new TaskData();
 	private static String filenameBase = "resources/data/tasks/";
 	private static String filename;
@@ -24,12 +32,13 @@ public class TaskData {
 	private Path tasksPath;
 	
 	private TaskData() {}
-	
+	//hashmap TaskItem
 	public ObservableList<TaskItem> getTasks(){
 		return tasks;
 	}
 	
 	public void setFilename(int uid) {
+		//created to set the filename and update
 		StringBuffer fullFile = new StringBuffer();
 		fullFile.append(filenameBase);
 		fullFile.append("user");
@@ -60,6 +69,7 @@ public class TaskData {
 				t.setCompleted(true);
 			}
 		}
+		//created to mark a task completed
 	}
 	
 	public void loadTasks() {
@@ -82,6 +92,7 @@ public class TaskData {
 		}catch (IOException e) {
 		}catch (ClassNotFoundException e) {
 		}
+		//logic to load tasks and store
 	}
 	
 	public void saveTasks() {
@@ -95,6 +106,7 @@ public class TaskData {
 			}
 		}catch (IOException e) {
 		}
+		//created to save the tasks
 	}
 	
 	private void createIfNotExist() {
@@ -105,9 +117,11 @@ public class TaskData {
 			} catch (IOException e) {
 			}
 		}
+		//created new file name if file does not exist
 	}
 	
 	public String getFileName() {
 		return filename;
 	}
+	//returns filename
 }

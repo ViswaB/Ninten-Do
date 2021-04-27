@@ -3,7 +3,14 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-
+/**
+ * The following project Ninten-Do is an application that allows users to input tasks they must complete in a game like manner.
+ * The goal of the application is to make daily chores fun and engaging for the user. The java Model application TaskItem.java
+ * is created in order to set the logic, needed to calculate and update
+ * the rank for the tasks necessary for the Ninten-Do application.
+ * 
+ *
+ */
 public class TaskItem implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String shortDesc;
@@ -13,6 +20,7 @@ public class TaskItem implements Serializable{
 	private int rank;
 	
 	public TaskItem(String shortDesc, String longDesc, LocalDate deadline) {
+		//sets this. for task Item in order to calculate the rank
 		this.shortDesc = shortDesc;
 		this.longDesc = longDesc;
 		this.deadline = deadline;
@@ -33,21 +41,27 @@ public class TaskItem implements Serializable{
 	}
 	public LocalDate getDeadline() {
 		return deadline;
+		//returns deadline
 	}
 	public void setDeadline(LocalDate deadline) {
 		this.deadline = deadline;
+		//sets the deadline
 	}
 	public boolean getCompleted() {
 		return this.completed;
+		//returns get completed
 	}
 	public void setCompleted(boolean completed) {
 		this.completed = completed;
+		//sets the completed item to be completed
 	}
 	public int getRank() {
 		return this.rank;
 	}
+	//returns the rank
 	
 	private void calculateRank() {
+		//logic to calculate the rank system the rank is based on the days and deadline for tasks.
 		long daysLong = ChronoUnit.DAYS.between(LocalDate.now(), this.deadline);
 		int days = (int)daysLong;
 		
