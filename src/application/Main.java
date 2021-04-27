@@ -9,7 +9,13 @@ import model.LevelsData;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
-
+/**
+ * The following project Ninten-Do is an application that allows users to input tasks they must complete in a game like manner.
+ * The goal of the application is to make daily chores fun and engaging for the user. The java application Main.java
+ * is created in order to set the logic, scenes, functions and calls needed to set the primary stage of the application.
+ * 
+ *
+ */
 
 public class Main extends Application {
 	@Override
@@ -26,6 +32,8 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+	//Login Screen scene for the Application.
+	
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -38,11 +46,12 @@ public class Main extends Application {
 		model.UserData.getInstance().loadUsers();
 		LevelsData.getInstance().loadLevels();
 	}
-
+	/**calls model for userData and LevelsData
+*/
 	@Override
 	public void stop() throws IOException{
 		model.UserData.getInstance().saveUsers();
 	}
 	
-	
+	//calls to stop linked to model
 }
