@@ -21,7 +21,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.User;
 import model.UserData;
-
+/**
+ * The following project Ninten-Do is an application that allows users to input tasks they must complete in a game like manner.
+ * The goal of the application is to make daily chores fun and engaging for the user. The java application RegisterController.java
+ * is created in order to set the logic, scenes, functions and calls needed to allow users to register for a login into the 
+ * Ninten-Do application.
+ * 
+ *
+ */
 
 public class RegisterController {
 
@@ -41,6 +48,7 @@ public class RegisterController {
     @FXML private PasswordField confirmPassword;
    
 	@FXML private void createNewAccount(ActionEvent event) throws IOException {
+		//logic to set login informatio into a string in order to call and setup for verifying login credentials.
 	
 		String firstName1, lastName1, userName1, passWord1, confirmPassword1;
 		int userID = 0;
@@ -76,6 +84,8 @@ public class RegisterController {
 					Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
 					window.setScene(scene);
 					window.show();
+					//alert and Logic to verify the correct login credentials, verifies login information. 
+					//calls to model and changes scene to home.
 				}
 				else {
 					Alert failedtoCreate = new Alert(AlertType.NONE);
@@ -90,6 +100,7 @@ public class RegisterController {
 					newPassword.clear();
 					confirmPassword.clear();
 				}
+				//alert and Logic to verify the correct login credentials, verifies login information.
 			}
 			else {
 				Alert passwordMismatch = new Alert(AlertType.NONE);
@@ -101,6 +112,7 @@ public class RegisterController {
 				newPassword.clear();
 				confirmPassword.clear();
 			}
+			//alert and Logic to verify the correct login credentials, verifies login information.
 		}
 		else {
 			Alert a = new Alert(AlertType.ERROR);
@@ -110,6 +122,7 @@ public class RegisterController {
 			a.showAndWait();
 		}
 	}
+	////Alert created to verify login errors, such as empty fields or incorrect login credentials
 	@FXML private void toLoginScr(ActionEvent event) throws IOException {
 		loginScr = FXMLLoader.load(getClass().getResource("../scene/LoginScreen.fxml"));
 		Scene scene = new Scene(loginScr);
@@ -117,8 +130,9 @@ public class RegisterController {
 		window.setScene(scene);
 		window.show();
 	}
+	//function 'toLoginScrn' created to change scene to the login screen
 	@FXML private void quittoDesktop2(ActionEvent event) throws IOException {
 		System.exit(0);
 	}	
-	
+	//function created to allow user to quit to the desktop
 }

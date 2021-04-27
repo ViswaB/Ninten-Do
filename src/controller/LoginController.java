@@ -17,7 +17,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
+/**
+ * The following project Ninten-Do is an application that allows users to input tasks they must complete in a game like manner.
+ * The goal of the application is to make daily chores fun and engaging for the user. The java application LoginController.java
+ * is created in order to set the logic, scenes, functions and calls needed to allow users to log into the Ninten-Do application.
+ * 
+ *
+ */
 public class LoginController {
 
 	@FXML private Button Login;
@@ -29,8 +35,10 @@ public class LoginController {
     @FXML private Text userName;
     @FXML private AnchorPane loginScr;
     @FXML private AnchorPane registerScr;
+    //set the private variable used for logging in
    
 	@FXML private void handleLogin(ActionEvent event) throws IOException {
+		//function used to create the user name, password, store it and set the scene 
 		String tempUsername = usernameField.getLength() != 0 ? usernameField.getText(): null;
 		String tempPassword = passwordField.getLength() != 0 ? passwordField.getText(): null;
 		if(tempUsername != null && tempPassword != null){
@@ -52,6 +60,7 @@ public class LoginController {
 				usernameField.clear();
 				passwordField.clear();
 			}
+			//checks to make sure user name and password exists
 		} 
 		else{
 			Alert a = new Alert(AlertType.ERROR);
@@ -60,10 +69,12 @@ public class LoginController {
 			a.setContentText("Please fill out all fields prior to submitting");
 			a.showAndWait();
 		}
+		//verifies users fills out all necessary information needed
 	}
 	@FXML private void quitToDesktop(ActionEvent event) throws IOException {
 		System.exit(0);
 	}	
+	//function created to be able to quit the application
 	
 	@FXML private void toRegisterScr(ActionEvent event) throws IOException {
 		registerScr= FXMLLoader.load(getClass().getResource("../scene/RegisterScreen.fxml"));
@@ -74,5 +85,6 @@ public class LoginController {
 		window.show();
 
 	}
+	//registration screen function
 }
 

@@ -24,7 +24,14 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.Node;
 import javafx.stage.Stage;
-
+/**
+ * The following project Ninten-Do is an application that allows users to input tasks they must complete in a game like manner.
+ * The goal of the application is to make daily chores fun and engaging for the user. The java application TaskInputController.java
+ * is created in order to set the logic, scenes, functions and calls needed to allow users to view and update
+ * the data entered for the tasks necessary for the Ninten-Do application.
+ * 
+ *
+ */
 public class TaskInputController {
 
     @FXML private ProgressBar xpProgress;
@@ -47,6 +54,7 @@ public class TaskInputController {
     private User currentUser;
     
     @FXML private void toHome(ActionEvent event) throws IOException{
+    	//changes scene to the home scene
     	taskInputAnchor = FXMLLoader.load(getClass().getResource("../scene/Home.fxml"));
     	Scene scene = new Scene(taskInputAnchor);
     	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -55,6 +63,7 @@ public class TaskInputController {
     }
     
     @FXML private void processItem(ActionEvent event) {
+    	//The processItem function checks the fields to verify alert user a task was added.
     	if(checkFields()) {
     		String taskTitle = taskName.getText();
     		String taskDescription = taskDesc.getText();
@@ -79,6 +88,7 @@ public class TaskInputController {
     }
     
     private boolean showDialog(String header, String content) {
+    	//function used to call string for the header and task content also changes scenes to 'ErrorDialog'.
     	Dialog<ButtonType> dialog = new Dialog<>();
 		dialog.initOwner(taskInputAnchor.getScene().getWindow());
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../scene/ErrorDialog.fxml"));
@@ -101,6 +111,7 @@ public class TaskInputController {
     	currentUser = model.UserData.getInstance().retrieveUser();
     	setHPprogress();
     	setXPprogress();
+    	//initializes and calls to model for the user data
     }
     
 	// logic for setting hp points based on user data

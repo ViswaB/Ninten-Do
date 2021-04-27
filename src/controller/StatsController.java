@@ -22,7 +22,14 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * The following project Ninten-Do is an application that allows users to input tasks they must complete in a game like manner.
+ * The goal of the application is to make daily chores fun and engaging for the user. The java application StatsController.java
+ * is created in order to set the logic, scenes, functions and calls needed to allow users to view and update
+ * the stats for the Ninten-Do application.
+ * 
+ *
+ */
 public class StatsController {
 
     @FXML private Label CurrentTasks;
@@ -39,6 +46,7 @@ public class StatsController {
     @FXML private ProgressBar monthTask = new ProgressBar();
    
     @FXML private void toHome(ActionEvent event) throws IOException {
+    	//function 'tohome' changes scenes to the home scene
     	mainAnchor = FXMLLoader.load(getClass().getResource("../scene/Home.fxml"));
     	Scene scene = new Scene(mainAnchor);
     	Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -47,7 +55,7 @@ public class StatsController {
     }
     
     public void initialize() throws ClassNotFoundException, IOException {
-    	
+    	//initializes the data and implements the logic to set the progress bars for the user.
     	//set progress bars
     	ObservableList<TaskItem> list;
     	
