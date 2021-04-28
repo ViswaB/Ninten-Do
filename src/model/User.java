@@ -160,6 +160,18 @@ public class User implements Serializable{
 	}
 	//returns userID
 	
+	// remove task upon completion
+	public void removeTask(TaskItem task) {
+		if(task.getCompleted()) 
+			completedTasks.remove(task);
+	}
+	
+	// clear all tasks
+	public void clearTasks() {
+		completedTasks.clear();
+	}
+	
+	
 	@Override
 	public String toString() {
 		return this.firstName + " " + this.lastName;
