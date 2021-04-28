@@ -133,6 +133,7 @@ public class HomeController {
 	@FXML
 	private void clearTasks(ActionEvent event) {
 		TaskData.getInstance().clearTasks();
+		currentUser.clearTasks();
 	}
 //to clear all tasks 
 	@FXML
@@ -140,6 +141,7 @@ public class HomeController {
 		TaskItem task = taskListView.getSelectionModel().getSelectedItem();
 		if(task != null) {
 			TaskData.getInstance().removeTask(task);
+			currentUser.removeTask(task);
 		}
 	}
 //remove task function connected to taskListView
@@ -207,8 +209,10 @@ public class HomeController {
 			int currBossHp = currentUser.getMaxBossHp() - currentUser.getBossDmg();
 			int maxBossHp = currentUser.getMaxBossHp();
 			double hpProgress = (double) currBossHp / maxBossHp;
-			hpBar.setProgress(hpProgress);
-			hpPointsLbl.setText(Integer.toString(currBossHp) + "/" + Integer.toString(maxBossHp));
+			if(hpProgress > 0) {
+				hpBar.setProgress(hpProgress);
+				hpPointsLbl.setText(Integer.toString(currBossHp) + "/" + Integer.toString(maxBossHp));
+			}
 		} else {
 			hpBar.setProgress(0);
 			hpPointsLbl.setText("Defeated!");

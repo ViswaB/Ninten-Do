@@ -119,9 +119,11 @@ public class TaskInputController {
 		if (currentUser.getMaxBossHp() != -1) {
 			int currBossHp = currentUser.getMaxBossHp() - currentUser.getBossDmg();
 			int maxBossHp = currentUser.getMaxBossHp();
-			double hpProgress = (double) currBossHp / maxBossHp;
-			hpProgess.setProgress(hpProgress);
-			hpLabel.setText(Integer.toString(currBossHp) + "/" + Integer.toString(maxBossHp));
+			double hpProgressPts = (double) currBossHp / maxBossHp;
+			if(hpProgressPts > 0) {
+				hpProgess.setProgress(hpProgressPts);
+				hpLabel.setText(Integer.toString(currBossHp) + "/" + Integer.toString(maxBossHp));
+			}
 		} else {
 			hpProgess.setProgress(0);
 			hpLabel.setText("Defeated!");
