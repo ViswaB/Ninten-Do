@@ -19,7 +19,7 @@
 
 <h4>Known Bugs:</h4>
 <ul>
-  <li>User can mark a task complete multiple times and be awarded XP indefinitely</li>
+  <li>None based on our User simulation testing</li>
 </ul>
 
 <hr>
