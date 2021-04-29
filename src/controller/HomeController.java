@@ -189,6 +189,7 @@ public class HomeController {
 		if(task != null) {
 			TaskData.getInstance().removeTask(task);
 			currentUser.removeTask(task);
+			setHPprogress();
 		}
 	}
 
@@ -205,7 +206,7 @@ public class HomeController {
 		TaskItem task = taskListView.getSelectionModel().getSelectedItem();
 		if(task != null && !task.getCompleted()) {
 			TaskData.getInstance().markComplete(task);
-			UserData.getInstance().retrieveUser().setCompletedTask(task);
+			currentUser.setCompletedTask(task);
 			setXPprogress();
 			setHPprogress();
 		}
@@ -279,17 +280,14 @@ public class HomeController {
 	 * Damage is determined by marking tasks as complete
 	 */
 	private void setHPprogress() {
-		if (currentUser.getMaxBossHp() != -1) {
+		if (currentUser.getMaxBossHp() > 0) {
 			int currBossHp = currentUser.getMaxBossHp() - currentUser.getBossDmg();
 			int maxBossHp = currentUser.getMaxBossHp();
 			double hpProgress = (double) currBossHp / maxBossHp;
-			if(hpProgress > 0) {
-				hpBar.setProgress(hpProgress);
-				hpPointsLbl.setText(Integer.toString(currBossHp) + "/" + Integer.toString(maxBossHp));
-			}
+			hpBar.setProgress(hpProgress);
+			hpPointsLbl.setText(Integer.toString(currBossHp) + "/" + Integer.toString(maxBossHp));
 		} else {
 			hpBar.setProgress(0);
-			hpPointsLbl.setText("Defeated!");
 		}
 	}
 
