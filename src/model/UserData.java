@@ -13,12 +13,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Iterator;
+
 /**
- * The following project Ninten-Do is an application that allows users to input tasks they must complete in a game like manner.
- * The goal of the application is to make daily chores fun and engaging for the user. The java Model application UserData.java
- * is created in order to set the logic, functions and calls needed to allow users to view and update
- * the data entered for the user data necessary for the Ninten-Do application.
+ * Singleton class allows UserData
+ * to be accessible throughout application
+ * in a static manner
  * 
+ * No need to instantiate instances of this class
+ * whenever application needs access to Task data
+ * 
+ * Handles all logic related to User files data
+ * 
+ * @author Filiberto Rios
  *
  */
 public class UserData {
@@ -28,9 +34,21 @@ public class UserData {
 	private ArrayList<User> allUsers;
 	private Path filePath;
 
+	/**
+	 * Private constructor doesn't allow instances of the class
+	 */
 	private UserData() {}
-	//logic for user data
 	
+	/**
+	 * Iterates through all Users and checks
+	 * if requested user exists, if it does
+	 * it sets loggedInUser to the User class
+	 * associated with requested user for login
+	 * 
+	 * @param userName
+	 * @param password
+	 * @return
+	 */
 	public boolean getUser(String userName, String password) {
 		for(User user : allUsers) {
 			if(user.getUserName().equals(userName) && user.getPassword().equals(password)) {
@@ -41,10 +59,20 @@ public class UserData {
 		return false;
 	}
 	
+	/**
+	 * @return Logged in user
+	 */
 	public User retrieveUser() {
 		return this.loggedInUser;
 	}
 	
+	/**
+	 * Adds user to database of users
+	 * Fails if two users have the same UserName
+	 * Called only when Users register a new account
+	 * @param user
+	 * @return
+	 */
 	public boolean addUser(User user) {
 		//logic to add users
 		for(User u: allUsers) {
@@ -62,6 +90,9 @@ public class UserData {
 		return true;
 	}
 	
+	/**
+	 * Reads and stores all users from the users database file
+	 */
 	public void loadUsers() {
 		createIfNotExist();
 		allUsers = new ArrayList<User>();
@@ -82,9 +113,11 @@ public class UserData {
 		}catch(IOException e) {
 		}catch(ClassNotFoundException e) {
 		}
-		//loads and adds users
 	}
 	
+	/**
+	 * Saves all users back to the database file
+	 */
 	public void saveUsers() {
 		filePath = FileSystems.getDefault().getPath(usersFile);
 		
@@ -97,23 +130,30 @@ public class UserData {
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		//saves users
 	}
 	
+	/**
+	 * Updates logged in user in HashMap with any changes made throughout application
+	 * Not entirely sure if this is required, but better safe than sorry
+	 */
 	public void updateUser() {
 		for(User user : allUsers) {
 			if(user == this.loggedInUser) {
 				user = this.loggedInUser;
 			}
 		}
-		//updates users logged in data
 	}
 	
+	/**
+	 * @return Singleton instance
+	 */
 	public static UserData getInstance() {
 		return instance;
 	}
-	//returns instance for userdata
 	
+	/**
+	 * Creates user database file if it doesn't exist
+	 */
 	private void createIfNotExist() {
 		File file = new File(usersFile);
 		
@@ -124,7 +164,6 @@ public class UserData {
 				e.printStackTrace();
 			}
 		}
-		//created users file if it does not exist
 	}
 
 }

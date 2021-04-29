@@ -24,12 +24,10 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.Node;
 import javafx.stage.Stage;
+
 /**
- * The following project Ninten-Do is an application that allows users to input tasks they must complete in a game like manner.
- * The goal of the application is to make daily chores fun and engaging for the user. The java application TaskInputController.java
- * is created in order to set the logic, scenes, functions and calls needed to allow users to view and update
- * the data entered for the tasks necessary for the Ninten-Do application.
- * 
+ * Controller for TaskInput scene
+ * Allows user to add tasks to be completed
  *
  */
 public class TaskInputController {
@@ -53,6 +51,12 @@ public class TaskInputController {
     
     private User currentUser;
     
+    /**
+     * Sends the user back to Home scene
+     * 
+     * @param event
+     * @throws IOException
+     */
     @FXML private void toHome(ActionEvent event) throws IOException{
     	//changes scene to the home scene
     	taskInputAnchor = FXMLLoader.load(getClass().getResource("../scene/Home.fxml"));
@@ -62,14 +66,22 @@ public class TaskInputController {
     	stage.show();
     }
     
+    /**
+     * Processes given task information
+     * Creates TaskItem instance for storing
+     * 
+     * @param event
+     */
     @FXML private void processItem(ActionEvent event) {
-    	//The processItem function checks the fields to verify alert user a task was added.
     	if(checkFields()) {
     		String taskTitle = taskName.getText();
     		String taskDescription = taskDesc.getText();
     		LocalDate taskDeadline = taskDate.getValue() != null ? taskDate.getValue() : LocalDate.now();
     		TaskData.getInstance().addTask(new TaskItem(taskTitle, taskDescription, taskDeadline));
     		UserData.getInstance().retrieveUser().setMaxBossHp(0);
+    		
+    		// Shows user Success message
+    		// If check fails, still adds task, but doesn't notify
     		if(!showDialog("Process Success", "Successfully added Task")) {
     			return;
     		}
@@ -77,16 +89,32 @@ public class TaskInputController {
     		taskDesc.clear();
     		taskDate.setValue(null);
     	}else {
+    		// if fields are empty (date field is the exception)
+    		// displays error message
     		if(!showDialog("Error processing data", "Fill out 'Task Name' and 'Task Description' and try again.")) {
     			return;
     		}
     	}
     }
     
+    /**
+     * Checks to see if Task Name and Task Description are empty
+     * Returns true if both fields are filled out, false if either is empty
+     * Doesn't check Date field, if user doesn't select date, uses current date
+     * 
+     * @return
+     */
     private boolean checkFields() {
     	return (taskName.getLength() != 0 ? true : false) && (taskDesc.getLength() != 0 ? true : false);
     }
     
+    /**
+     * Helper function to show dialog
+     * 
+     * @param header
+     * @param content
+     * @return
+     */
     private boolean showDialog(String header, String content) {
     	//function used to call string for the header and task content also changes scenes to 'ErrorDialog'.
     	Dialog<ButtonType> dialog = new Dialog<>();
@@ -107,14 +135,26 @@ public class TaskInputController {
 		return true;
     }
     
+    /**
+	 * Called before the scene gets displayed
+	 * Java compiler follows specific path
+	 * -> Call to Class Constructor
+	 * -> Initializes all @FXML annotated variables and function
+	 * -> Calls initialize() function if exists
+	 * 
+	 * Retrieves current logged in user
+	 * Sets boss HP and User XP progress bars
+	 */
     public void initialize() {
     	currentUser = model.UserData.getInstance().retrieveUser();
     	setHPprogress();
     	setXPprogress();
-    	//initializes and calls to model for the user data
     }
     
-	// logic for setting hp points based on user data
+	/**
+	 * Calculates boss HP and damage done to boss
+	 * Damage is determined by marking tasks as complete
+	 */
 	private void setHPprogress() {
 		if (currentUser.getMaxBossHp() != -1) {
 			int currBossHp = currentUser.getMaxBossHp() - currentUser.getBossDmg();
@@ -130,7 +170,10 @@ public class TaskInputController {
 		}
 	}
 
-	// logic for setting xp points based on user data
+	/**
+	 * Calculates user XP stats
+	 * XP is awarded upon task completion
+	 */
 	private void setXPprogress() {
 		userLevel.setText(Integer.toString(currentUser.getUserLvl()));
 		if (currentUser.getUserLvl() != -1) {

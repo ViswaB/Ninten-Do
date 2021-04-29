@@ -3,12 +3,13 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+
 /**
- * The following project Ninten-Do is an application that allows users to input tasks they must complete in a game like manner.
- * The goal of the application is to make daily chores fun and engaging for the user. The java Model application TaskItem.java
- * is created in order to set the logic, needed to calculate and update
- * the rank for the tasks necessary for the Ninten-Do application.
+ * Model class for TaskItems
+ * Implements Serializable to allow
+ * class to be written to file
  * 
+ * @author Filiberto Rios
  *
  */
 public class TaskItem implements Serializable{
@@ -19,47 +20,77 @@ public class TaskItem implements Serializable{
 	private boolean completed;
 	private int rank;
 	
+	/**
+	 * Constructs and initializes TaskItem fields with given values
+	 * 
+	 * @param shortDesc
+	 * @param longDesc
+	 * @param deadline
+	 */
 	public TaskItem(String shortDesc, String longDesc, LocalDate deadline) {
-		//sets this. for task Item in order to calculate the rank
 		this.shortDesc = shortDesc;
 		this.longDesc = longDesc;
 		this.deadline = deadline;
 		this.completed = false;
 		calculateRank();
 	}
+	
+	/**
+	 * @return Task Name (Short Description)
+	 */
 	public String getShortDesc() {
 		return shortDesc;
 	}
-	public void setShortDesc(String shortDesc) {
-		this.shortDesc = shortDesc;
-	}
+	
+	/**
+	 * @return Task Description (Long Description)
+	 */
 	public String getlongDesc() {
 		return longDesc;
 	}
-	public void setDetails(String longDesc) {
-		this.longDesc = longDesc;
-	}
+	
+	/**
+	 * @return Task Deadline
+	 */
 	public LocalDate getDeadline() {
 		return deadline;
 		//returns deadline
 	}
-	public void setDeadline(LocalDate deadline) {
-		this.deadline = deadline;
-		//sets the deadline
-	}
+	
+	/**
+	 * @return Task Completed status
+	 */
 	public boolean getCompleted() {
 		return this.completed;
-		//returns get completed
 	}
+	
+	/**
+	 * Sets completion status of Task
+	 * 
+	 * @param completed
+	 */
 	public void setCompleted(boolean completed) {
 		this.completed = completed;
 		//sets the completed item to be completed
 	}
+	
+	/**
+	 * @return Internally calculated Task Rank
+	 */
 	public int getRank() {
 		return this.rank;
 	}
-	//returns the rank
 	
+	/**
+	 * Internal calculation for Task Rank
+	 * Rank is calculated depending on how far out
+	 * the user set the Task Deadline relative to current date
+	 * 
+	 * The further out the Task is to be completed, the less urgent
+	 * the task is, therefore the lower rank Task is given
+	 * 
+	 * Max rank is 500, Min rank is 200
+	 */
 	private void calculateRank() {
 		//logic to calculate the rank system the rank is based on the days and deadline for tasks.
 		long daysLong = ChronoUnit.DAYS.between(LocalDate.now(), this.deadline);

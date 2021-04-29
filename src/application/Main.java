@@ -1,5 +1,17 @@
 package application;
-	
+
+/**
+ * The following project Ninten-Do is an application that allows users 
+ * to input tasks they must complete in a game like manner.
+ * The goal of the application is to make daily chores fun and engaging for the user.
+ * 
+ *  @author Filiberto Rios (Team Lead)
+ *  @author Alex Bush
+ *  @author Lucas Overbey
+ *  @author Viswa Bhargavi
+ *  @author Megan Garza
+ */
+
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -9,15 +21,16 @@ import model.LevelsData;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
-/**
- * The following project Ninten-Do is an application that allows users to input tasks they must complete in a game like manner.
- * The goal of the application is to make daily chores fun and engaging for the user. The java application Main.java
- * is created in order to set the logic, scenes, functions and calls needed to set the primary stage of the application.
- * 
- *
- */
 
+/**
+ * Main application class for the project
+ * Sets up the Main scene to be used throughout application
+ */
 public class Main extends Application {
+	
+	/**
+	 * Sets the login screen as the first page displayed
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -32,7 +45,6 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	//Login Screen scene for the Application.
 	
 	
 	public static void main(String[] args) {
@@ -40,14 +52,22 @@ public class Main extends Application {
 	}
 
 	
-	
+	/**
+	 * Calls Singleton classes to populate required data models
+	 * Called before the main application process runs allowing 
+	 * for data to be loaded for immediate access within application
+	 */
 	@Override
 	public void init() throws IOException {
 		model.UserData.getInstance().loadUsers();
 		LevelsData.getInstance().loadLevels();
 	}
-	/**calls model for userData and LevelsData
-*/
+	
+	/**
+	 * Called when application ends normally
+	 * Used to save User data for next run of
+	 * the application
+	 */
 	@Override
 	public void stop() throws IOException{
 		model.UserData.getInstance().saveUsers();

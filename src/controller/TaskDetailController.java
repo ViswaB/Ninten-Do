@@ -14,12 +14,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
 /**
- * The following project Ninten-Do is an application that allows users to input tasks they must complete in a game like manner.
- * The goal of the application is to make daily chores fun and engaging for the user. The java application TaskDetailController.java
- * is created in order to set the logic, scenes, functions and calls needed to allow users to view and update
- * the tasks for the Ninten-Do application.
- * 
+ * Controller for TaskDetail scene
+ * Shows extended Task details
  *
  */
 public class TaskDetailController {
@@ -32,16 +30,34 @@ public class TaskDetailController {
 	
 	private TaskItem selectedItem;
 	
+	/**
+	 * Constructor to set task for which to show details
+	 * 
+	 * @param selectedItem
+	 */
 	public TaskDetailController(TaskItem selectedItem) {
 		this.selectedItem = selectedItem;
 	}
 	
+	/**
+	 * Sends user back to Home scene
+	 * 
+	 * @param event
+	 */
 	@FXML private void toHome(ActionEvent event) {
 		((Stage)((Node)event.getSource()).getScene().getWindow()).close();
 	}
 	
+	/**
+	 * Called before the scene gets displayed
+	 * Java compiler follows specific path
+	 * -> Call to Class Constructor
+	 * -> Initializes all @FXML annotated variables and function
+	 * -> Calls initialize() function if exists
+	 * 
+	 * Initializes required fields to show extended Task details
+	 */
 	public void initialize() {
-		//initializes the data and implements the logic for the task data also runs for when tasks are completed.
 		taskTitle.setText(this.selectedItem.getShortDesc());
 		taskTitle.setEditable(false);
 		

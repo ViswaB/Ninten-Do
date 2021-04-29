@@ -28,16 +28,11 @@ import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
 /**
- * The following project Ninten-Do is an application that allows users to input tasks they must complete in a game like manner.
- * The goal of the application is to make daily chores fun and engaging for the user. The java application HomeController.java
- * is created in order to set the logic, scenes, functions and calls needed to set the Home screen of the application.
- * 
+ * Controller for the main program
+ * allowing for navigation to different
+ * components of the application
  *
  */
-
-
-
-
 public class HomeController {
 	@FXML private Button manageTasksBtn, statsBtn, logoutBtn, quitBtn;
 	@FXML private Button viewTaskButton, markCompleteButton, removeTaskButton, removeAllButton;
@@ -50,15 +45,20 @@ public class HomeController {
 	@FXML private AnchorPane homeScr;
 	@FXML private FXMLLoader loader;
 
-	// instances to retrieve user data
 	private User currentUser;
 	
+	/**
+	 * Loads the TaskInput scene
+	 * sends the user to TaskInput
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void toTaskInput(ActionEvent event) throws IOException {
 		loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("../scene/TaskInput.fxml"));
-		homeScr = loader.load();
-//used to change scenes to TaskIput 
+		homeScr = loader.load(); 
 		Scene scene = new Scene(homeScr);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setScene(scene);
@@ -66,12 +66,18 @@ public class HomeController {
 		stage.show();
 	}
 
+	/**
+	 * Loads the UserStats scene
+	 * sending the user to review their stats
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void toUserStats(ActionEvent event) throws IOException {
 		loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("../scene/Stats.fxml"));
 		homeScr = loader.load();
-//change scene to stats when selected in the home screen
 		Scene scene = new Scene(homeScr);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setResizable(false);
@@ -79,14 +85,29 @@ public class HomeController {
 		stage.show();
 	}
 
+	/**
+	 * Logs out of the application
+	 * Saves all data before login out
+	 * Calls Platform.exit() instead of System.exit()
+	 * Doing so allows the JavaFX process to call stop() function in Main.java
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void logoutAndExit(ActionEvent event) throws IOException {
-		// implement logout logic in Model class
 		UserData.getInstance().updateUser();
 		TaskData.getInstance().saveTasks();
 		Platform.exit();
 	}
 
+	/**
+	 * Logs out the current user and send back to login page
+	 * Saves user specific information for next login
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void logout(ActionEvent event) throws IOException {
 		TaskData.getInstance().saveTasks();
@@ -102,15 +123,24 @@ public class HomeController {
 		stage.show();
 	}
 
+	/**
+	 * Gets the currently selected task in the ListView
+	 * and passes it to TaskDetailController to populate
+	 * the required fields with required information about
+	 * the selected task
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void toTaskDetails(ActionEvent event) throws IOException {
 		TaskItem task = taskListView.getSelectionModel().getSelectedItem();
 		if (task != null) {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../scene/TaskDetails.fxml"));
-			//to task details scene
+			
 			TaskDetailController controller = new TaskDetailController(task);
 			loader.setController(controller);
-			//Sets the Title and Scene
+			
 			Scene scene = new Scene(loader.load());
 			Stage stage = new Stage();
 			stage.setTitle("Task Details");
@@ -123,19 +153,36 @@ public class HomeController {
 		}
 	}
 
+	/**
+	 * Enabled buttons once the user selects a task
+	 * from the ListView
+	 */
 	@FXML
 	private void enableTaskButtons() {
 		viewTaskButton.setDisable(false);
 		markCompleteButton.setDisable(false);
 		removeTaskButton.setDisable(false);
 	}
-//function to call the enableTask Button once called disables unnecessary calls
+
+	/**
+	 * Removes all tasks associated with the user
+	 * 
+	 * @param event
+	 */
 	@FXML
 	private void clearTasks(ActionEvent event) {
 		TaskData.getInstance().clearTasks();
 		currentUser.clearTasks();
 	}
-//to clear all tasks 
+
+	/**
+	 * Removes selected task from task list
+	 * and from user's completed task list
+	 * Doing so allows for proper recalculation
+	 * of boss HP
+	 * 
+	 * @param event
+	 */
 	@FXML
 	private void removeTask(ActionEvent event) {
 		TaskItem task = taskListView.getSelectionModel().getSelectedItem();
@@ -144,7 +191,15 @@ public class HomeController {
 			currentUser.removeTask(task);
 		}
 	}
-//remove task function connected to taskListView
+
+	/**
+	 * Marks selected task complete
+	 * Upon marking a task as complete
+	 * the user gets awarded XP based
+	 * on internal task rank
+	 * 
+	 * @param event
+	 */
 	@FXML
 	private void markComplete(ActionEvent event) {
 		TaskItem task = taskListView.getSelectionModel().getSelectedItem();
@@ -155,21 +210,38 @@ public class HomeController {
 			setHPprogress();
 		}
 	}
-	//markComplete function connected to TaskData and UserData
 
+	/**
+	 * Called before the scene gets displayed
+	 * Java compiler follows specific path
+	 * -> Call to Class Constructor
+	 * -> Initializes all @FXML annotated variables and function
+	 * -> Calls initialize() function if exists
+	 * 
+	 * Gets the user that logged into the application
+	 * Used to set up ListView loaded with user specific tasks
+	 * Calculates User's boss HP and User's XP
+	 * Recalculates boss HP and User XP every time Home scene is loaded
+	 * 
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	public void initialize() throws ClassNotFoundException, IOException {
 		currentUser = UserData.getInstance().retrieveUser();
-		nameUser.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
-		//Initialize Function used to initialize the controls
+		nameUser.setText(currentUser.toString());
 		taskListView.setItems(TaskData.getInstance().getTasks());
 		taskListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
+		/**
+		 * CellFactory is used to customize ListView entries
+		 * In this case, the Task text color is changed
+		 * depending on the internal task rank 
+		 */
 		taskListView.setCellFactory(new Callback<ListView<TaskItem>, ListCell<TaskItem>>() {
 			@Override
 			public ListCell<TaskItem> call(ListView<TaskItem> param) {
 				ListCell<TaskItem> cell = new ListCell<TaskItem>() {
 					@Override
-					//Function to update Items and logic regarding the task item and rank
 					protected void updateItem(TaskItem item, boolean empty) {
 						super.updateItem(item, empty);
 						if (empty) {
@@ -194,8 +266,7 @@ public class HomeController {
 				return cell;
 			}
 		});
-
-		/* comment off when users data are added */
+ 
 		model.UserData.getInstance().retrieveUser().setBossHpStats(TaskData.getInstance().getTasks());
 		setXPprogress();
 		setHPprogress();
@@ -203,7 +274,10 @@ public class HomeController {
 		disableTaskButtons();
 	}
 
-	// logic for setting hp points based on user data
+	/**
+	 * Calculates boss HP and damage done to boss
+	 * Damage is determined by marking tasks as complete
+	 */
 	private void setHPprogress() {
 		if (currentUser.getMaxBossHp() != -1) {
 			int currBossHp = currentUser.getMaxBossHp() - currentUser.getBossDmg();
@@ -219,7 +293,10 @@ public class HomeController {
 		}
 	}
 
-	// logic for setting xp points based on user data
+	/**
+	 * Calculates user XP stats
+	 * XP is awarded upon task completion
+	 */
 	private void setXPprogress() {
 		userLevel.setText(Integer.toString(currentUser.getUserLvl()));
 		if (currentUser.getUserLvl() != -1) {
@@ -231,14 +308,16 @@ public class HomeController {
 		} else {
 			xpBar.setProgress(1);
 			userLevel.setText("MAX");
-			//updates and sets the xp points from the user data.
 		}
 	}
 
+	/**
+	 * Disables View Task, Mark Complete, and Remove Task
+	 * buttons upon loading the Home scene
+	 */
 	private void disableTaskButtons() {
 		viewTaskButton.setDisable(true);
 		markCompleteButton.setDisable(true);
 		removeTaskButton.setDisable(true);
-		//function disable task button disables view task,mark complete and remove task buttons.
 	}
 }
