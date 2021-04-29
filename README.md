@@ -35,7 +35,7 @@
 <h4>To clone project and run</h4>
 <h5>Using GitBash</h5>
 <ol>
-  <li>Download GitBash from <a href="https://git-scm.com/downloads">here</a></li>
+  <li>Download GitBash from <a href="https://git-scm.com/downloads" target="_blank" rel="noreferrer noopener">here</a></li>
   <li>Open GitBash and <code>cd directory/to/clone/to</code></li>
   <li>Run <code>git clone https://github.com/thousandSun/Ninten-Do.git</code></li>
   <li>Open Eclipse: <code>File</code> > <code>Open Projects from File System...</code></li>
