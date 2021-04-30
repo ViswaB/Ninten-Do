@@ -127,20 +127,7 @@
       <Pane fx:id="bottomScr" layoutX="190.0" layoutY="453.0" prefHeight="320.0" prefWidth="420.0" stylesheets="@../../resources/css/homeScr.css">
          <children>
             <ProgressBar layoutX="14.0" layoutY="8.0" prefHeight="25.0" prefWidth="400.0" progress="0.0" stylesheets="@../../resources/css/homeScr.css" fx:id="xpBar" />
-            <Label fx:id="totalTasksLbl" layoutX="55.0" layoutY="280.0" text="Total Tasks">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-               <textFill>
-                  <LinearGradient endX="1.0" endY="0.8737864077669901" startX="1.0" startY="0.4999999999999999">
-                     <stops>
-                        <Stop color="WHITE" />
-                        <Stop color="BLACK" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </textFill>
-            </Label>
-            <Label fx:id="taskListLbl" layoutX="49.0" layoutY="46.0" prefHeight="30.0" prefWidth="100.0" text="Tasks List">
+            <Label fx:id="taskListLbl" layoutX="19.0" layoutY="46.0" prefHeight="30.0" prefWidth="130.0" text="   Tasks List" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -154,7 +141,6 @@
                </textFill>
             </Label>
             <ListView fx:id="taskListView" fixedCellSize="0.0" layoutX="153.0" layoutY="46.0" onMouseClicked="#enableTaskButtons" prefHeight="220.0" prefWidth="240.0" />
-            <TextField fx:id="numT" editable="false" layoutX="152.0" layoutY="278.0" prefHeight="31.0" prefWidth="240.0" />
             <Button fx:id="viewTaskButton" layoutX="17.0" layoutY="89.0" mnemonicParsing="false" onAction="#toTaskDetails" prefHeight="30.0" prefWidth="130.0" text="View Task" />
             <Button fx:id="markCompleteButton" layoutX="17.0" layoutY="141.0" mnemonicParsing="false" onAction="#markComplete" prefHeight="30.0" prefWidth="130.0" text="Mark Complete" />
             <Button fx:id="removeTaskButton" layoutX="17.0" layoutY="189.0" mnemonicParsing="false" onAction="#removeTask" prefHeight="30.0" prefWidth="130.0" text="Remove Task" />
